@@ -30,7 +30,7 @@ export default function Home() {
             <GithubStats />
             <Blog />
             <Contact />
-            <footer className="w-full py-6 text-center text-sm text-neutral-500 border-t border-neutral-200 dark:border-neutral-800">
+            <footer className="w-full py-6 text-center text-sm text-neutral-600 dark:text-neutral-300 border-t border-neutral-200 dark:border-neutral-800">
               © {new Date().getFullYear()} AI/ML Portfolio. All rights reserved.
             </footer>
           </div>

@@ -26,11 +26,11 @@ export const Education = () => {
                     <div key={index} className="flex flex-col md:flex-row justify-between items-start md:items-center p-0 border-b border-neutral-200 dark:border-neutral-800 last:border-0 pb-4 last:pb-0">
                         <div>
                             <h3 className="text-lg font-bold text-left">{edu.degree}</h3>
-                            <p className="text-neutral-500 mt-1 text-left text-sm">{edu.institution}</p>
+                            <p className="text-neutral-600 dark:text-neutral-300 mt-1 text-left text-sm">{edu.institution}</p>
                         </div>
                         <div className="text-left md:text-right mt-2 md:mt-0">
                             <p className="text-xs font-semibold">{edu.year}</p>
-                            <p className="text-xs text-neutral-500">{edu.grade}</p>
+                            <p className="text-xs text-neutral-600 dark:text-neutral-300">{edu.grade}</p>
                         </div>
                     </div>
                 ))}

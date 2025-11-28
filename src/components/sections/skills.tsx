@@ -71,7 +71,7 @@ const SkeletonWeb = () => {
                 </div>
                 {!isActive && (
                     <div className="absolute inset-0 flex items-center justify-center bg-white/10 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="text-sm font-medium text-neutral-500 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none">Click to animate</span>
+                        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-300 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none">Click to animate</span>
                     </div>
                 )}
             </div>
@@ -88,15 +88,15 @@ const SkeletonBrain = () => {
         >
             <div className="relative flex items-center justify-center">
                 <div className={`absolute h-20 w-20 rounded-none bg-blue-500/20 transition-all duration-500 ${isActive ? "animate-ping opacity-100" : "opacity-0"}`} />
-                <IconBrain className={`h-10 w-10 relative z-10 transition-colors ${isActive ? "text-blue-500" : "text-neutral-500"}`} />
+                <IconBrain className={`h-10 w-10 relative z-10 transition-colors ${isActive ? "text-blue-500" : "text-neutral-600 dark:text-neutral-300"}`} />
             </div>
             <div className="relative flex items-center justify-center">
                 <div className={`absolute h-16 w-16 rounded-none bg-purple-500/20 transition-all duration-500 delay-75 ${isActive ? "animate-ping opacity-100" : "opacity-0"}`} />
-                <IconNetwork className={`h-8 w-8 relative z-10 transition-colors ${isActive ? "text-purple-500" : "text-neutral-500"}`} />
+                <IconNetwork className={`h-8 w-8 relative z-10 transition-colors ${isActive ? "text-purple-500" : "text-neutral-600 dark:text-neutral-300"}`} />
             </div>
             {!isActive && (
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <span className="text-xs font-medium text-neutral-500 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none mt-16">Click to animate</span>
+                    <span className="text-xs font-medium text-neutral-600 dark:text-neutral-300 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none mt-16">Click to animate</span>
                 </div>
             )}
         </div>
@@ -121,7 +121,7 @@ const SkeletonChart = () => {
             ))}
             {!isActive && (
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <span className="text-xs font-medium text-neutral-500 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none mb-8">Click to animate</span>
+                    <span className="text-xs font-medium text-neutral-600 dark:text-neutral-300 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none mb-8">Click to animate</span>
                 </div>
             )}
         </div>
@@ -140,7 +140,7 @@ const SkeletonGenAI = () => {
                 animate={{ scale: isActive ? 1 : 0.8 }}
                 className={`h-12 w-12 rounded-none flex items-center justify-center border transition-colors ${isActive ? "bg-neutral-100 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700" : "bg-neutral-50 dark:bg-neutral-900 border-transparent"}`}
             >
-                <IconDatabase className={`h-6 w-6 transition-colors ${isActive ? "text-neutral-500" : "text-neutral-300"}`} />
+                <IconDatabase className={`h-6 w-6 transition-colors ${isActive ? "text-neutral-600 dark:text-neutral-300" : "text-neutral-300"}`} />
             </motion.div>
             <motion.div
                 initial={{ width: 0 }}
@@ -168,11 +168,11 @@ const SkeletonGenAI = () => {
                 transition={{ delay: 0.6 }}
                 className={`h-12 w-12 rounded-none flex items-center justify-center border transition-colors ${isActive ? "bg-neutral-100 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700" : "bg-neutral-50 dark:bg-neutral-900 border-transparent"}`}
             >
-                <IconRobot className={`h-6 w-6 transition-colors ${isActive ? "text-neutral-500" : "text-neutral-300"}`} />
+                <IconRobot className={`h-6 w-6 transition-colors ${isActive ? "text-neutral-600 dark:text-neutral-300" : "text-neutral-300"}`} />
             </motion.div>
             {!isActive && (
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <span className="text-xs font-medium text-neutral-500 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none">Click to animate</span>
+                    <span className="text-xs font-medium text-neutral-600 dark:text-neutral-300 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none">Click to animate</span>
                 </div>
             )}
         </div>
@@ -202,7 +202,7 @@ const skills = [
             </div>
         ),
         header: <SkeletonWeb />,
-        icon: <IconWorld className="h-4 w-4 text-neutral-500" />,
+        icon: <IconWorld className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
         className: "md:col-span-2",
     },
     {
@@ -215,7 +215,7 @@ const skills = [
             </div>
         ),
         header: <SkeletonBrain />,
-        icon: <IconBrain className="h-4 w-4 text-neutral-500" />,
+        icon: <IconBrain className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
         className: "md:col-span-1",
     },
     {
@@ -229,7 +229,7 @@ const skills = [
             </div>
         ),
         header: <SkeletonChart />,
-        icon: <IconChartDots className="h-4 w-4 text-neutral-500" />,
+        icon: <IconChartDots className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
         className: "md:col-span-1",
     },
     {
@@ -242,7 +242,7 @@ const skills = [
             </div>
         ),
         header: <SkeletonGenAI />,
-        icon: <IconCpu className="h-4 w-4 text-neutral-500" />,
+        icon: <IconCpu className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />,
         className: "md:col-span-2",
     },
 ];

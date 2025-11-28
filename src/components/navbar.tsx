@@ -34,51 +34,51 @@ export const Navbar = () => {
         {
             title: "Home",
             icon: (
-                <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconHome className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#",
         },
         {
             title: "About",
             icon: (
-                <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconUser className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#about",
         },
         {
             title: "Projects",
             icon: (
-                <IconBriefcase className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconBriefcase className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#projects",
         },
         {
             title: "Skills",
             icon: (
-                <IconCode className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconCode className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#skills",
         },
         {
             title: "Education",
             icon: (
-                <IconSchool className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconSchool className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#education",
         },
         {
             title: "Get in Touch",
             icon: (
-                <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconMail className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#contact",
         },
         {
             title: mounted && theme === "dark" ? "Light Mode" : "Dark Mode",
             icon: mounted && theme === "dark" ? (
-                <IconSun className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconSun className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ) : (
-                <IconMoon className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                <IconMoon className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             onClick: toggleTheme,
         },

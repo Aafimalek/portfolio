@@ -11,12 +11,12 @@ export const Hero = () => {
             <div className="flex flex-col-reverse md:flex-row items-center justify-start gap-12">
                 <div className="flex flex-col items-start justify-center z-20">
                     <div className="flex flex-wrap items-end gap-2">
-                        <h1 className="text-4xl sm:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left">
+                        <h1 className="text-4xl sm:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left mb-3">
                             aafi malek
                         </h1>
                         <RoleRotator />
                     </div>
-                    <p className="text-neutral-500 max-w-lg my-4 text-xl text-left">
+                    <p className="text-neutral-600 dark:text-neutral-300 max-w-lg my-4 text-xl text-left">
                         Turning complex concepts into real-world solutions
                     </p>
                     <div className="flex gap-4 mt-8">
