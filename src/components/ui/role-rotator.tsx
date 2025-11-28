@@ -9,7 +9,7 @@ const roles = [
     "Fullstack Engineer",
 ];
 
-export const RoleRotator = () => {
+export const RoleRotator = ({ className }: { className?: string }) => {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export const RoleRotator = () => {
     }, []);
 
     return (
-        <div className="inline-flex items-center justify-center overflow-hidden align-middle">
+        <div className={`inline-flex items-center justify-center overflow-hidden align-middle ${className}`}>
             <div className="relative h-8 w-40 md:w-48"> {/* Fixed width to prevent layout shift */}
                 <AnimatePresence mode="wait">
                     <motion.div
