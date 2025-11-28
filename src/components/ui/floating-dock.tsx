@@ -140,24 +140,24 @@ function IconContainer({
 
     const width = useSpring(widthTransform, {
         mass: 0.1,
-        stiffness: 100,
-        damping: 15,
+        stiffness: 150,
+        damping: 12,
     });
     const height = useSpring(heightTransform, {
         mass: 0.1,
-        stiffness: 100,
-        damping: 15,
+        stiffness: 150,
+        damping: 12,
     });
 
     const widthIcon = useSpring(widthTransformIcon, {
         mass: 0.1,
-        stiffness: 100,
-        damping: 15,
+        stiffness: 150,
+        damping: 12,
     });
     const heightIcon = useSpring(heightTransformIcon, {
         mass: 0.1,
-        stiffness: 100,
-        damping: 15,
+        stiffness: 150,
+        damping: 12,
     });
 
     const [hovered, setHovered] = useState(false);
@@ -168,7 +168,7 @@ function IconContainer({
             style={{ width, height }}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            className="aspect-square rounded-none bg-neutral-200/50 dark:bg-neutral-800/50 flex items-center justify-center relative will-change-transform"
+            className="aspect-square rounded-full bg-neutral-200/50 dark:bg-neutral-800/50 flex items-center justify-center relative will-change-transform"
         >
             <AnimatePresence>
                 {hovered && (
@@ -176,7 +176,7 @@ function IconContainer({
                         initial={{ opacity: 0, y: 10, x: "-50%" }}
                         animate={{ opacity: 1, y: 0, x: "-50%" }}
                         exit={{ opacity: 0, y: 2, x: "-50%" }}
-                        className="px-2 py-0.5 whitespace-pre rounded-none bg-neutral-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-neutral-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+                        className="px-2 py-0.5 whitespace-pre rounded-md bg-neutral-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-neutral-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
                     >
                         {title}
                     </motion.div>
@@ -193,14 +193,14 @@ function IconContainer({
 
     if (href) {
         return (
-            <Link href={href}>
+            <Link href={href} className="flex items-center justify-center">
                 {content}
             </Link>
         );
     }
 
     return (
-        <button onClick={onClick} className="bg-transparent border-none p-0 cursor-pointer">
+        <button onClick={onClick} className="bg-transparent border-none p-0 cursor-pointer flex items-center justify-center">
             {content}
         </button>
     );

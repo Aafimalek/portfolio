@@ -85,7 +85,7 @@ export const Navbar = () => {
     ];
 
     return (
-        <div className="flex items-center justify-center fixed bottom-4 inset-x-0 z-[5000]">
+        <div className="flex items-center justify-center fixed bottom-10 inset-x-0 z-[5000]">
             <FloatingDock
                 items={links}
             />
