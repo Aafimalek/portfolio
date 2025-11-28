@@ -79,10 +79,20 @@ export const Contact = () => {
                 >
                     <GlowCard className="h-full">
                         <div className="p-8 h-full">
-                            <form className="space-y-4">
+                            <form className="space-y-4" onSubmit={(e) => {
+                                e.preventDefault();
+                                const formData = new FormData(e.currentTarget);
+                                const name = formData.get("name");
+                                const email = formData.get("email");
+                                const message = formData.get("message");
+                                const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+                                window.open(`https://wa.me/917574067294?text=${whatsappMessage}`, "_blank");
+                            }}>
                                 <div>
                                     <label className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Name</label>
                                     <motion.input
+                                        name="name"
+                                        required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
                                         className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all"
                                         placeholder="Your Name"
@@ -91,6 +101,9 @@ export const Contact = () => {
                                 <div>
                                     <label className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Email</label>
                                     <motion.input
+                                        name="email"
+                                        type="email"
+                                        required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
                                         className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all"
                                         placeholder="Your Email"
@@ -99,13 +112,15 @@ export const Contact = () => {
                                 <div>
                                     <label className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Message</label>
                                     <motion.textarea
+                                        name="message"
+                                        required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
                                         className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all min-h-[150px]"
                                         placeholder="Your Message"
                                     />
                                 </div>
                                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                    <Button className="w-full">Send Message</Button>
+                                    <Button className="w-full" type="submit">Send Message</Button>
                                 </motion.div>
                             </form>
                         </div>

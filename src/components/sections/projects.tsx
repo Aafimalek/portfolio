@@ -241,7 +241,7 @@ export const Projects = () => {
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-none text-xs font-medium hover:opacity-90 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100"
+                                            className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-none text-xs font-medium hover:opacity-90 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-white dark:after:bg-black after:transition-transform after:duration-300 hover:after:scale-x-100"
                                         >
                                             <IconWorld className="h-4 w-4" />
                                             Live Demo
@@ -255,7 +255,7 @@ export const Projects = () => {
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-none text-xs font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100"
+                                            className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-none text-xs font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-black dark:after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100"
                                         >
                                             <IconBrandGithub className="h-4 w-4" />
                                             GitHub
