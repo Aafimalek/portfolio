@@ -210,9 +210,9 @@ export const Projects = () => {
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
                     >
-                        <GlowCard className="h-full flex flex-col">
+                        <GlowCard className="h-full flex flex-col p-4">
                             <VideoCard videoUrl={project.videoUrl} title={project.title} />
-                            <CardHeader>
+                            <CardHeader className="p-0 mt-4">
                                 <div className="flex justify-between items-start">
                                     <Link href={project.liveUrl} target="_blank" className="hover:underline decoration-neutral-500 underline-offset-4">
                                         <CardTitle className="text-base font-bold text-left flex items-center gap-2">
@@ -224,7 +224,7 @@ export const Projects = () => {
                                 </div>
                                 <CardDescription className="mt-2 text-left text-sm">{project.description}</CardDescription>
                             </CardHeader>
-                            <CardContent className="mt-auto">
+                            <CardContent className="p-0 mt-auto">
                                 <div className="flex flex-wrap gap-2 mt-2 justify-start mb-4">
                                     {project.tags.map((tag) => (
                                         <span key={tag} className="text-[10px] px-2 py-1 bg-neutral-100 dark:bg-neutral-900 rounded-none text-neutral-600 dark:text-neutral-300 lowercase">

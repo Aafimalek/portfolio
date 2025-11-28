@@ -14,12 +14,30 @@ export const Hero = () => {
                 <div className="flex flex-col items-start justify-center z-20">
                     <div className="flex flex-wrap items-end gap-2">
                         <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="text-4xl sm:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left"
+                            className="text-4xl sm:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left flex"
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: {
+                                        staggerChildren: 0.1,
+                                    },
+                                },
+                            }}
+                            initial="hidden"
+                            animate="visible"
                         >
-                            aafi malek
+                            {Array.from("aafi malek").map((letter, index) => (
+                                <motion.span
+                                    key={index}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 20 },
+                                        visible: { opacity: 1, y: 0 },
+                                    }}
+                                >
+                                    {letter === " " ? "\u00A0" : letter}
+                                </motion.span>
+                            ))}
                         </motion.h1>
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
