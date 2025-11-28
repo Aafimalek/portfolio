@@ -24,6 +24,9 @@ import {
     IconBolt,
     IconCpu,
     IconWorld,
+    IconTools,
+    IconFlame,
+    IconBoxModel,
 } from "@tabler/icons-react";
 
 const SkeletonWeb = () => {
@@ -191,9 +194,9 @@ const skills = [
         title: "Machine Learning",
         description: (
             <div className="flex flex-wrap gap-2 mt-2">
-                <SkillPill icon={<IconBrain className="h-4 w-4" />} name="scikit-learn" />
-                <SkillPill icon={<IconBrain className="h-4 w-4" />} name="pytorch" />
-                <SkillPill icon={<IconBrain className="h-4 w-4" />} name="tensorflow" />
+                <SkillPill icon={<IconTools className="h-4 w-4" />} name="scikit-learn" />
+                <SkillPill icon={<IconFlame className="h-4 w-4" />} name="pytorch" />
+                <SkillPill icon={<IconBoxModel className="h-4 w-4" />} name="tensorflow" />
             </div>
         ),
         header: <SkeletonBrain />,
