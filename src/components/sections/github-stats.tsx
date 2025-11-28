@@ -10,16 +10,14 @@ export const GithubStats = () => {
             <h2 className="text-2xl font-bold text-left w-full mb-6">GitHub Contributions</h2>
             <div className="p-4 border rounded-xl bg-white dark:bg-black w-full flex justify-center">
                 <GitHubCalendar
-                    username="torvalds"
+                    username="Aafimalek"
                     colorScheme={theme === "dark" ? "dark" : "light"}
                     fontSize={12}
                     blockSize={12}
                     blockMargin={5}
                 />
             </div>
-            <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-300 w-full text-left">
-                * Using placeholder 'torvalds' until username is provided
-            </p>
+           
         </section>
     );
 };

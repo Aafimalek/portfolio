@@ -7,12 +7,11 @@ import { Mail, MapPin, Phone, Twitter, Linkedin, Github } from "lucide-react";
 export const Contact = () => {
     return (
         <SectionWrapper id="contact" className="py-10 w-full mb-20">
-            <h2 className="text-2xl font-bold text-left mb-6">Get in Touch</h2>
+            <h2 className="text-2xl font-bold text-left mb-4">Get in Touch</h2>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="space-y-6">
-                    <h3 className="text-xl font-bold text-left">Let's Work Together</h3>
                     <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-lg">
-                        I’m currently seeking exciting roles in AI & ML where I can apply my skills and grow alongside innovative teams. If you have a project, internship, or full-time position you think I’d be a great fit for, let’s connect—I’d love to explore how we can work together.
+                        I’m currently seeking exciting roles in AI & ML where I can apply my skills and grow alongside innovative teams. If you have a project, internship, or full-time position you think I’d be a great fit for, let’s connect I’d love to explore how we can work together.
                     </p>
                     <div className="space-y-4 mt-8">
                         <a href="mailto:aafimalek2023@gmail.com" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
@@ -27,15 +26,15 @@ export const Contact = () => {
                             <MapPin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             <span>Ahmedabad, Gujarat</span>
                         </a>
-                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
+                        <a href="https://x.com/aafimalek2032" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
                             <Twitter className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             <span>Twitter</span>
                         </a>
-                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
+                        <a href="https://linkedin.com/in/aafi-malek" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
                             <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             <span>LinkedIn</span>
                         </a>
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
+                        <a href="https://github.com/Aafimalek" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
                             <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             <span>GitHub</span>
                         </a>

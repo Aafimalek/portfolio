@@ -5,7 +5,7 @@ import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/sections/projects";
 import { Education } from "@/components/sections/education";
 import { Contact } from "@/components/sections/contact";
-import { Blog } from "@/components/sections/placeholders";
+
 import { GithubStats } from "@/components/sections/github-stats";
 import { GridBackground } from "@/components/ui/grid-background";
 
@@ -28,7 +28,6 @@ export default function Home() {
             <Projects />
             <Education />
             <GithubStats />
-            <Blog />
             <Contact />
             <footer className="w-full py-6 text-center text-sm text-neutral-600 dark:text-neutral-300 border-t border-neutral-200 dark:border-neutral-800">
               © {new Date().getFullYear()} AI/ML Portfolio. All rights reserved.

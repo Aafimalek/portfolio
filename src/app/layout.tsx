@@ -11,6 +11,9 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "AI/ML Engineer Portfolio",
   description: "Portfolio of an AI/ML Engineer",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

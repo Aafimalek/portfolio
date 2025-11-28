@@ -7,13 +7,13 @@ const education = [
         degree: "B.E. in Artificial Intelligence & Machine Learning",
         institution: "L.D. College of Engineering, Ahmedabad",
         year: "Expected June 2026",
-        grade: "CGPA: 7.75"
+        grade: "CGPA: 8.0"
     },
     {
         degree: "Diploma in Computer Engineering",
         institution: "Government Polytechnic, Jamnagar",
         year: "June 2023",
-        grade: "CGPA: 8.77"
+        grade: "CGPA: 8.73"
     }
 ];
 
