@@ -24,10 +24,25 @@ import {
     IconBolt,
     IconCpu,
     IconWorld,
-    IconTools,
     IconFlame,
     IconBoxModel,
 } from "@tabler/icons-react";
+import {
+    SiPython,
+    SiJavascript,
+    SiTypescript,
+    SiReact,
+    SiNextdotjs,
+    SiFastapi,
+    SiFlask,
+    SiScikitlearn,
+    SiPytorch,
+    SiTensorflow,
+    SiPandas,
+    SiNumpy,
+    SiLangchain,
+    SiStreamlit,
+} from "react-icons/si";
 
 const SkeletonWeb = () => {
     const [isActive, setIsActive] = useState(false);
@@ -177,13 +192,13 @@ const skills = [
         title: "Core & Web",
         description: (
             <div className="flex flex-wrap gap-2 mt-2">
-                <SkillPill icon={<IconBrandPython className="h-4 w-4" />} name="python" />
-                <SkillPill icon={<IconBrandJavascript className="h-4 w-4" />} name="js" />
-                <SkillPill icon={<IconBrandTypescript className="h-4 w-4" />} name="ts" />
-                <SkillPill icon={<IconBrandReact className="h-4 w-4" />} name="react" />
-                <SkillPill icon={<IconBrandNextjs className="h-4 w-4" />} name="nextjs" />
-                <SkillPill icon={<IconBolt className="h-4 w-4" />} name="fastapi" />
-                <SkillPill icon={<IconFlask className="h-4 w-4" />} name="flask" />
+                <SkillPill icon={<SiPython className="h-4 w-4" />} name="python" />
+                <SkillPill icon={<SiJavascript className="h-4 w-4" />} name="js" />
+                <SkillPill icon={<SiTypescript className="h-4 w-4" />} name="ts" />
+                <SkillPill icon={<SiReact className="h-4 w-4" />} name="react" />
+                <SkillPill icon={<SiNextdotjs className="h-4 w-4" />} name="nextjs" />
+                <SkillPill icon={<SiFastapi className="h-4 w-4" />} name="fastapi" />
+                <SkillPill icon={<SiFlask className="h-4 w-4" />} name="flask" />
             </div>
         ),
         header: <SkeletonWeb />,
@@ -194,9 +209,9 @@ const skills = [
         title: "Machine Learning",
         description: (
             <div className="flex flex-wrap gap-2 mt-2">
-                <SkillPill icon={<IconTools className="h-4 w-4" />} name="scikit-learn" />
-                <SkillPill icon={<IconFlame className="h-4 w-4" />} name="pytorch" />
-                <SkillPill icon={<IconBoxModel className="h-4 w-4" />} name="tensorflow" />
+                <SkillPill icon={<SiScikitlearn className="h-4 w-4" />} name="scikit-learn" />
+                <SkillPill icon={<SiPytorch className="h-4 w-4" />} name="pytorch" />
+                <SkillPill icon={<SiTensorflow className="h-4 w-4" />} name="tensorflow" />
             </div>
         ),
         header: <SkeletonBrain />,
@@ -207,8 +222,8 @@ const skills = [
         title: "Data Science",
         description: (
             <div className="flex flex-wrap gap-2 mt-2">
-                <SkillPill icon={<IconTable className="h-4 w-4" />} name="pandas" />
-                <SkillPill icon={<IconMathFunction className="h-4 w-4" />} name="numpy" />
+                <SkillPill icon={<SiPandas className="h-4 w-4" />} name="pandas" />
+                <SkillPill icon={<SiNumpy className="h-4 w-4" />} name="numpy" />
                 <SkillPill icon={<IconChartBar className="h-4 w-4" />} name="matplotlib" />
                 <SkillPill icon={<IconChartDots className="h-4 w-4" />} name="seaborn" />
             </div>
@@ -221,9 +236,9 @@ const skills = [
         title: "GenAI & Apps",
         description: (
             <div className="flex flex-wrap gap-2 mt-2">
-                <SkillPill icon={<IconRobot className="h-4 w-4" />} name="langchain" />
+                <SkillPill icon={<SiLangchain className="h-4 w-4" />} name="langchain" />
                 <SkillPill icon={<IconNetwork className="h-4 w-4" />} name="langgraph" />
-                <SkillPill icon={<IconAppWindow className="h-4 w-4" />} name="streamlit" />
+                <SkillPill icon={<SiStreamlit className="h-4 w-4" />} name="streamlit" />
             </div>
         ),
         header: <SkeletonGenAI />,
