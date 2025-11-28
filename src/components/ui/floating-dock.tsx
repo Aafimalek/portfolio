@@ -140,24 +140,24 @@ function IconContainer({
 
     const width = useSpring(widthTransform, {
         mass: 0.1,
-        stiffness: 150,
-        damping: 12,
+        stiffness: 80,
+        damping: 10,
     });
     const height = useSpring(heightTransform, {
         mass: 0.1,
-        stiffness: 150,
-        damping: 12,
+        stiffness: 80,
+        damping: 10,
     });
 
     const widthIcon = useSpring(widthTransformIcon, {
         mass: 0.1,
-        stiffness: 150,
-        damping: 12,
+        stiffness: 80,
+        damping: 10,
     });
     const heightIcon = useSpring(heightTransformIcon, {
         mass: 0.1,
-        stiffness: 150,
-        damping: 12,
+        stiffness: 80,
+        damping: 10,
     });
 
     const [hovered, setHovered] = useState(false);

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 
@@ -81,6 +82,8 @@ export const InfiniteMovingCards = ({
                 className
             )}
         >
+
+
             <ul
                 ref={scrollerRef}
                 className={cn(
@@ -90,8 +93,9 @@ export const InfiniteMovingCards = ({
                 )}
             >
                 {items.map((item, idx) => (
-                    <li
-                        className="w-[100px] relative flex-shrink-0 px-4 py-6 md:w-[120px]"
+                    <motion.li
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className="w-[100px] relative flex-shrink-0 px-4 py-6 md:w-[120px] cursor-pointer"
                         key={item.name + idx}
                     >
                         <div className="flex flex-col items-center justify-center gap-4">
@@ -102,7 +106,7 @@ export const InfiniteMovingCards = ({
                                 {item.name}
                             </span>
                         </div>
-                    </li>
+                    </motion.li>
                 ))}
             </ul>
         </div>
