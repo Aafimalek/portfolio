@@ -15,7 +15,7 @@ export const About = () => {
                     variants={{
                         visible: { transition: { staggerChildren: 0.02 } }
                     }}
-                    className="text-neutral-800 dark:text-neutral-200 leading-relaxed text-left text-lg flex flex-wrap gap-1"
+                    className="text-neutral-800 dark:text-neutral-200 leading-relaxed text-left text-base sm:text-lg flex flex-wrap gap-1"
                 >
                     {"Hi there 👋 I’m Aafi Malek, an AI & ML engineering undergrad from L.D. College Of Engineering i love building cool projects and learning new things. in my free time i watch films and listen to music and go down rabbit holes. my goal is to get good at programming and earn $mrr by building cool products that millions of people use.".split(" ").map((word, index) => (
                         <motion.span

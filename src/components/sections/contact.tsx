@@ -10,7 +10,7 @@ export const Contact = () => {
     return (
         <SectionWrapper id="contact" className="py-10 w-full mb-20">
             <h2 className="text-2xl font-bold text-left mb-4">Get in Touch</h2>
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
                 <div className="space-y-6">
                     <motion.div
                         initial="hidden"

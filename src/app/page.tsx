@@ -17,12 +17,12 @@ export default function Home() {
         <Navbar />
         <div className="relative z-10 w-full max-w-5xl mx-auto bg-white/50 dark:bg-black/50 shadow-[-20px_0_50px_0_rgba(0,0,0,0.3),20px_0_50px_0_rgba(0,0,0,0.3)] dark:shadow-[-20px_0_50px_0_rgba(255,255,255,0.15),20px_0_50px_0_rgba(255,255,255,0.15)]">
           {/* Left Striped Border */}
-          <div className="absolute top-0 left-0 w-8 h-full z-20 bg-stripe-gradient border-r-2 border-black/10 dark:border-white/10 shadow-md" />
+          <div className="hidden sm:block absolute top-0 left-0 w-8 h-full z-20 bg-stripe-gradient border-r-2 border-black/10 dark:border-white/10 shadow-md" />
 
           {/* Right Striped Border */}
-          <div className="absolute top-0 right-0 w-8 h-full z-20 bg-stripe-gradient border-l-2 border-black/10 dark:border-white/10 shadow-md" />
+          <div className="hidden sm:block absolute top-0 right-0 w-8 h-full z-20 bg-stripe-gradient border-l-2 border-black/10 dark:border-white/10 shadow-md" />
 
-          <div className="px-8 md:px-16 py-8">
+          <div className="px-4 sm:px-8 md:px-16 py-8">
             <ThemeReanimator>
               <Hero />
               <About />

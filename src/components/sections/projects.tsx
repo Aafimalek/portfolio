@@ -197,7 +197,7 @@ export const Projects = () => {
     return (
         <SectionWrapper id="projects" className="py-10 w-full">
             <h2 className="text-2xl font-bold text-left mb-6">Projects</h2>
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
 
 

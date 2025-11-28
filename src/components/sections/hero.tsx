@@ -64,7 +64,7 @@ export const Hero = () => {
                 <div className="flex flex-col items-start justify-center z-20">
                     <div className="flex flex-wrap items-end gap-2">
                         <motion.h1
-                            className="text-4xl sm:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left"
+                            className="text-3xl sm:text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5 }}
@@ -83,7 +83,7 @@ export const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="text-neutral-600 dark:text-neutral-300 max-w-lg my-4 text-xl text-left"
+                        className="text-neutral-600 dark:text-neutral-300 max-w-lg my-4 text-lg sm:text-xl text-left"
                     >
                         Turning complex concepts into real-world solutions
                     </motion.p>
