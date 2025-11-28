@@ -9,18 +9,23 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 const RollingText = ({ text }: { text: string }) => {
-    const [displayText, setDisplayText] = useState(text.split("").map(() => ""));
+    const [displayText, setDisplayText] = useState(
+        text.split("").map(() => ({ char: "", isLocked: false }))
+    );
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     useEffect(() => {
         let iterations = 0;
         const interval = setInterval(() => {
             setDisplayText((prev) =>
-                prev.map((letter, index) => {
+                prev.map((item, index) => {
                     if (index < iterations) {
-                        return text[index];
+                        return { char: text[index], isLocked: true };
                     }
-                    return letters[Math.floor(Math.random() * letters.length)];
+                    return {
+                        char: letters[Math.floor(Math.random() * letters.length)],
+                        isLocked: false,
+                    };
                 })
             );
 
@@ -36,15 +41,16 @@ const RollingText = ({ text }: { text: string }) => {
 
     return (
         <span className="inline-block">
-            {displayText.map((char, index) => (
+            {displayText.map((item, index) => (
                 <span
                     key={index}
                     className={cn(
                         "inline-block",
-                        char === " " ? "w-[0.2em]" : "min-w-[0.4em]"
+                        item.char === " " ? "w-[0.2em]" : "",
+                        !item.isLocked ? "min-w-[0.4em]" : ""
                     )}
                 >
-                    {char === " " ? "\u00A0" : char}
+                    {item.char === " " ? "\u00A0" : item.char}
                 </span>
             ))}
         </span>
