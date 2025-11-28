@@ -2,7 +2,7 @@
 import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { Button } from "@/components/ui/button";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Twitter, Linkedin, Github } from "lucide-react";
 
 export const Contact = () => {
     return (
@@ -26,6 +26,18 @@ export const Contact = () => {
                         <a href="https://maps.google.com/?q=Ahmedabad,Gujarat" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
                             <MapPin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             <span>Ahmedabad, Gujarat</span>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
+                            <Twitter className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                            <span>Twitter</span>
+                        </a>
+                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
+                            <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group">
+                            <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                            <span>GitHub</span>
                         </a>
                     </div>
                 </div>
