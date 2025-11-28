@@ -5,41 +5,70 @@ import { Download } from "lucide-react";
 import Image from "next/image";
 import { RoleRotator } from "@/components/ui/role-rotator";
 
+import { motion } from "framer-motion";
+
 export const Hero = () => {
     return (
         <div className="w-full pt-20 pb-10">
             <div className="flex flex-col-reverse md:flex-row items-center justify-start gap-12">
                 <div className="flex flex-col items-start justify-center z-20">
                     <div className="flex flex-wrap items-end gap-2">
-                        <h1 className="text-4xl sm:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-4xl sm:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left"
+                        >
                             aafi malek
-                        </h1>
-                        <RoleRotator className="mb-1" />
+                        </motion.h1>
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                            <RoleRotator className="mb-1" />
+                        </motion.div>
                     </div>
-                    <p className="text-neutral-600 dark:text-neutral-300 max-w-lg my-4 text-xl text-left">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="text-neutral-600 dark:text-neutral-300 max-w-lg my-4 text-xl text-left"
+                    >
                         Turning complex concepts into real-world solutions
-                    </p>
-                    <div className="flex gap-4 mt-8">
+                    </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                        className="flex gap-4 mt-8"
+                    >
                         <a href="#projects">
-                            <Button variant="outline">
+                            <Button variant="outline" className="transition-transform hover:scale-105 active:scale-95">
                                 View Projects
                             </Button>
                         </a>
                         <a href="/RESUME_AAFIKHAN_MALEK.pdf" download="RESUME_AAFIKHAN_MALEK.pdf">
-                            <Button>
+                            <Button className="transition-transform hover:scale-105 active:scale-95">
                                 <Download className="mr-2 h-4 w-4" /> Download Resume
                             </Button>
                         </a>
-                    </div>
+                    </motion.div>
                 </div>
-                <div className="relative w-40 h-40 md:w-64 md:h-64 aspect-square rounded-full overflow-hidden border-2 border-neutral-200 dark:border-neutral-800">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    whileHover={{ scale: 1.05, rotate: 5 }}
+                    className="relative w-40 h-40 md:w-64 md:h-64 aspect-square rounded-full overflow-hidden border-2 border-neutral-200 dark:border-neutral-800"
+                >
                     <Image
                         src="/profile_picture.jpg"
                         alt="Aafi Malek"
                         fill
                         className="object-cover"
                     />
-                </div>
+                </motion.div>
             </div>
         </div>
     );

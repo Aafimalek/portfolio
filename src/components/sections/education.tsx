@@ -17,13 +17,22 @@ const education = [
     }
 ];
 
+import { motion } from "framer-motion";
+
+// ... (education array remains the same)
+
 export const Education = () => {
     return (
         <SectionWrapper id="education" className="py-10 w-full">
             <h2 className="text-2xl font-bold text-left mb-6">Education</h2>
             <div className="w-full flex flex-col gap-8">
                 {education.map((edu, index) => (
-                    <div key={index} className="flex flex-col md:flex-row justify-between items-start md:items-center p-0 border-b border-neutral-200 dark:border-neutral-800 last:border-0 pb-4 last:pb-0">
+                    <motion.div
+                        key={index}
+                        whileHover={{ x: 10, backgroundColor: "rgba(0,0,0,0.02)" }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="flex flex-col md:flex-row justify-between items-start md:items-center p-4 rounded-lg border-b border-neutral-200 dark:border-neutral-800 last:border-0 hover:border-transparent dark:hover:bg-white/5 transition-colors"
+                    >
                         <div>
                             <h3 className="text-lg font-bold text-left">{edu.degree}</h3>
                             <p className="text-neutral-600 dark:text-neutral-300 mt-1 text-left text-sm">{edu.institution}</p>
@@ -32,7 +41,7 @@ export const Education = () => {
                             <p className="text-xs font-semibold">{edu.year}</p>
                             <p className="text-xs text-neutral-600 dark:text-neutral-300">{edu.grade}</p>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </SectionWrapper>
