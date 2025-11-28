@@ -11,6 +11,24 @@ import { useState } from "react";
 
 const projects = [
     {
+        title: "Advanced RAG",
+        year: "2025",
+        description: "Advanced Retrieval-Augmented Generation system.",
+        tags: ["RAG", "LLM", "Python"],
+        videoUrl: "https://www.youtube.com/embed/boDXKuCHPwU?autoplay=1&mute=1&controls=0&loop=1&playlist=boDXKuCHPwU",
+        liveUrl: "https://github.com/Aafimalek/advanced_rag",
+        githubUrl: "https://github.com/Aafimalek/advanced_rag",
+    },
+    {
+        title: "Capital Funds Client",
+        year: "2025",
+        description: "A client application for managing capital funds.",
+        tags: ["Finance", "Web App", "React"],
+        videoUrl: "https://www.youtube.com/embed/f0A58db1TZc?autoplay=1&mute=1&controls=0&loop=1&playlist=f0A58db1TZc",
+        liveUrl: "https://github.com/Aafimalek/capital-funds-client",
+        githubUrl: "https://github.com/Aafimalek/capital-funds-client",
+    },
+    {
         title: "GraphDB",
         year: "2025",
         description: "Ask questions about your graph database.",
