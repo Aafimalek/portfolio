@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
@@ -17,12 +16,16 @@ export const Hero = () => {
                         AI & ML Engineer | Turning complex concepts into real-world solutions
                     </p>
                     <div className="flex gap-4 mt-8">
-                        <Button variant="outline">
-                            View Projects
-                        </Button>
-                        <Button>
-                            <Download className="mr-2 h-4 w-4" /> Download Resume
-                        </Button>
+                        <a href="#projects">
+                            <Button variant="outline">
+                                View Projects
+                            </Button>
+                        </a>
+                        <a href="/RESUME_AAFIKHAN_MALEK.pdf" download="RESUME_AAFIKHAN_MALEK.pdf">
+                            <Button>
+                                <Download className="mr-2 h-4 w-4" /> Download Resume
+                            </Button>
+                        </a>
                     </div>
                 </div>
                 <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-neutral-200 dark:border-neutral-800">

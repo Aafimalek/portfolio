@@ -7,7 +7,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 export const Contact = () => {
     return (
         <SectionWrapper id="contact" className="py-10 w-full mb-20">
-            <h2 className="text-2xl font-bold text-left mb-6">Contact Me</h2>
+            <h2 className="text-2xl font-bold text-left mb-6">Get in Touch</h2>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="space-y-6">
                     <h3 className="text-xl font-bold text-left">Let's Work Together</h3>
