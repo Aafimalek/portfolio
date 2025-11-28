@@ -71,7 +71,7 @@ const SkeletonWeb = () => {
                 </div>
                 {!isActive && (
                     <div className="absolute inset-0 flex items-center justify-center bg-white/10 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="text-xs font-medium text-neutral-500 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none">Click to animate</span>
+                        <span className="text-sm font-medium text-neutral-500 bg-white/80 dark:bg-black/80 px-2 py-1 rounded-none">Click to animate</span>
                     </div>
                 )}
             </div>
@@ -183,7 +183,7 @@ const SkeletonGenAI = () => {
 const SkillPill = ({ icon, name }: { icon: React.ReactNode; name: string }) => (
     <div className="flex items-center gap-2 px-3 py-1.5 rounded-none bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
         {icon}
-        <span className="text-xs font-medium text-neutral-600 dark:text-neutral-300 lowercase">{name}</span>
+        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-300 lowercase">{name}</span>
     </div>
 );
 
