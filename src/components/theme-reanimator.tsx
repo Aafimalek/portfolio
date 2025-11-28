@@ -15,5 +15,5 @@ export const ThemeReanimator = ({ children }: { children: React.ReactNode }) => 
         return <>{children}</>;
     }
 
-    return <div key={theme}>{children}</div>;
+    return <div>{children}</div>;
 };
