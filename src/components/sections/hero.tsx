@@ -62,12 +62,12 @@ export const Hero = () => {
                         className="flex gap-4 mt-8"
                     >
                         <a href="#projects">
-                            <Button variant="outline" className="transition-transform hover:scale-105 active:scale-95">
+                            <Button className="transition-all duration-300 hover:scale-105 active:scale-95 bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-300 shadow-lg hover:shadow-xl">
                                 View Projects
                             </Button>
                         </a>
                         <a href="/RESUME_AAFIKHAN_MALEK.pdf" download="RESUME_AAFIKHAN_MALEK.pdf">
-                            <Button className="transition-transform hover:scale-105 active:scale-95">
+                            <Button variant="outline" className="transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700">
                                 <Download className="mr-2 h-4 w-4" /> Download Resume
                             </Button>
                         </a>

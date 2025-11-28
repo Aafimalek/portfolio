@@ -14,7 +14,7 @@ export default function Home() {
     <GridBackground>
       <main className="flex min-h-screen flex-col items-center justify-between relative">
         <Navbar />
-        <div className="relative z-10 w-full max-w-5xl mx-auto bg-white/50 dark:bg-black/50 shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+        <div className="relative z-10 w-full max-w-5xl mx-auto bg-white/50 dark:bg-black/50 shadow-[-20px_0_50px_0_rgba(0,0,0,0.1),20px_0_50px_0_rgba(0,0,0,0.1)] dark:shadow-[-20px_0_50px_0_rgba(255,255,255,0.15),20px_0_50px_0_rgba(255,255,255,0.15)]">
           {/* Left Striped Border */}
           <div className="absolute top-0 left-0 w-8 h-full z-20 bg-stripe-gradient border-r-2 border-black/10 dark:border-white/10 shadow-md" />
 

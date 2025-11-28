@@ -12,14 +12,27 @@ export const Contact = () => {
             <h2 className="text-2xl font-bold text-left mb-4">Get in Touch</h2>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="space-y-6">
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-lg"
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={{
+                            visible: { transition: { staggerChildren: 0.02 } }
+                        }}
+                        className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-lg flex flex-wrap gap-1"
                     >
-                        I’m currently seeking exciting roles in AI & ML where I can apply my skills and grow alongside innovative teams. If you have a project, internship, or full-time position you think I’d be a great fit for, let’s connect I’d love to explore how we can work together.
-                    </motion.p>
+                        {"I’m currently seeking exciting roles in AI & ML where I can apply my skills and grow alongside innovative teams. If you have a project, internship, or full-time position you think I’d be a great fit for, let’s connect I’d love to explore how we can work together.".split(" ").map((word, index) => (
+                            <motion.span
+                                key={index}
+                                variants={{
+                                    hidden: { opacity: 0, y: 10 },
+                                    visible: { opacity: 1, y: 0 }
+                                }}
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
+                    </motion.div>
 
                     <motion.div
                         initial="hidden"
