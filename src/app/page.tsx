@@ -8,6 +8,7 @@ import { Contact } from "@/components/sections/contact";
 
 import { GithubStats } from "@/components/sections/github-stats";
 import { GridBackground } from "@/components/ui/grid-background";
+import { ThemeReanimator } from "@/components/theme-reanimator";
 
 export default function Home() {
   return (
@@ -22,13 +23,15 @@ export default function Home() {
           <div className="absolute top-0 right-0 w-8 h-full z-20 bg-stripe-gradient border-l-2 border-black/10 dark:border-white/10 shadow-md" />
 
           <div className="px-8 md:px-16 py-8">
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Education />
-            <GithubStats />
-            <Contact />
+            <ThemeReanimator>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Education />
+              <GithubStats />
+              <Contact />
+            </ThemeReanimator>
             <footer className="w-full py-6 text-center text-sm text-neutral-600 dark:text-neutral-300 border-t border-neutral-200 dark:border-neutral-800">
               © {new Date().getFullYear()} AI/ML Portfolio. All rights reserved.
             </footer>
