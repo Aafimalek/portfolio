@@ -14,7 +14,7 @@ export const GithubStats = () => {
             <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="p-4 border rounded-xl bg-white dark:bg-black w-full flex justify-center hover:shadow-lg dark:hover:shadow-white/10 transition-shadow"
+                className="p-4 border rounded-none bg-white dark:bg-black w-full flex justify-center hover:shadow-lg dark:hover:shadow-white/10 transition-shadow"
             >
                 <GitHubCalendar
                     username="Aafimalek"

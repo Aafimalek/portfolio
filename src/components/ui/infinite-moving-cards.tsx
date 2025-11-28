@@ -93,9 +93,8 @@ export const InfiniteMovingCards = ({
                 )}
             >
                 {items.map((item, idx) => (
-                    <motion.li
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="w-[100px] relative flex-shrink-0 px-4 py-6 md:w-[120px] cursor-pointer"
+                    <li
+                        className="w-[100px] relative flex-shrink-0 px-4 py-6 md:w-[120px] cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-3"
                         key={item.name + idx}
                     >
                         <div className="flex flex-col items-center justify-center gap-4">
@@ -106,7 +105,7 @@ export const InfiniteMovingCards = ({
                                 {item.name}
                             </span>
                         </div>
-                    </motion.li>
+                    </li>
                 ))}
             </ul>
         </div>

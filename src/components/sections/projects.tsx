@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { GlowCard } from "@/components/ui/glow-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -197,6 +198,10 @@ export const Projects = () => {
         <SectionWrapper id="projects" className="py-10 w-full">
             <h2 className="text-2xl font-bold text-left mb-6">Projects</h2>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+
+
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
@@ -204,9 +209,8 @@ export const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
                     >
-                        <Card className="bg-white/50 dark:bg-black/50 backdrop-blur-sm border-neutral-200 dark:border-neutral-800 overflow-hidden h-full flex flex-col">
+                        <GlowCard className="h-full flex flex-col">
                             <VideoCard videoUrl={project.videoUrl} title={project.title} />
                             <CardHeader>
                                 <div className="flex justify-between items-start">
@@ -259,7 +263,7 @@ export const Projects = () => {
                                     </Link>
                                 </div>
                             </CardContent>
-                        </Card>
+                        </GlowCard>
                     </motion.div>
                 ))}
             </div>
