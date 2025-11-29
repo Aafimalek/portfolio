@@ -10,7 +10,7 @@ export const SectionWrapper = ({ children, className, id }: { children: React.Re
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={cn(className)}
+            className={cn("scroll-mt-4", className)}
         >
             {children}
         </motion.section>
