@@ -46,18 +46,18 @@ export const Navbar = () => {
             href: "#about",
         },
         {
-            title: "Projects",
-            icon: (
-                <IconBriefcase className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#projects",
-        },
-        {
             title: "Skills",
             icon: (
                 <IconCode className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#skills",
+        },
+        {
+            title: "Projects",
+            icon: (
+                <IconBriefcase className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
+            ),
+            href: "#projects",
         },
         {
             title: "Education",
