@@ -7,7 +7,7 @@ import { SectionWrapper } from "@/components/section-wrapper";
 import { motion } from "framer-motion";
 
 export const GithubStats = () => {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
     return (
         <SectionWrapper id="github-stats" className="py-10 w-full flex flex-col items-center justify-center">
             <h2 className="text-2xl font-bold text-left w-full mb-6">GitHub Contributions</h2>
@@ -19,7 +19,7 @@ export const GithubStats = () => {
                 <div className="min-w-[700px] sm:min-w-0 flex justify-center">
                     <GitHubCalendar
                         username="Aafimalek"
-                        colorScheme={theme === "dark" ? "dark" : "light"}
+                        colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
                         fontSize={12}
                         blockSize={10}
                         blockMargin={4}
