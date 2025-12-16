@@ -194,15 +194,17 @@ const VideoCard = ({ videoUrl, title }: { videoUrl: string, title: string }) => 
 };
 
 export const Projects = () => {
+    const [showAll, setShowAll] = useState(false);
+    const INITIAL_DISPLAY_COUNT = 4;
+    
+    const displayedProjects = showAll ? projects : projects.slice(0, INITIAL_DISPLAY_COUNT);
+    const hasMoreProjects = projects.length > INITIAL_DISPLAY_COUNT;
+
     return (
         <SectionWrapper id="projects" className="py-10 w-full">
             <h2 className="text-2xl font-bold text-left mb-6">Projects</h2>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-
-
-
-
-                {projects.map((project, index) => (
+                {displayedProjects.map((project, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
@@ -267,6 +269,26 @@ export const Projects = () => {
                     </motion.div>
                 ))}
             </div>
+            
+            {hasMoreProjects && (
+                <motion.div 
+                    className="flex justify-center mt-8"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                >
+                    <motion.button
+                        onClick={() => setShowAll(!showAll)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-8 py-3 border-2 border-neutral-300 dark:border-neutral-700 bg-transparent text-neutral-800 dark:text-neutral-200 rounded-none text-sm font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all relative overflow-hidden group"
+                    >
+                        <span className="relative z-10">
+                            {showAll ? "show less" : `see more (${projects.length - INITIAL_DISPLAY_COUNT} more)`}
+                        </span>
+                    </motion.button>
+                </motion.div>
+            )}
         </SectionWrapper>
     );
 };

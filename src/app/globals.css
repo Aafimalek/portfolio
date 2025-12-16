@@ -8,6 +8,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-doto: var(--font-doto);
+  --font-nabla: var(--font-nabla);
+  --font-vt323: var(--font-vt323);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -53,6 +56,8 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
+  --about-text-color: #000000;
+  --about-text-shadow: 0 0 1px #000000, 0 0 1px #000000;
   --foreground: oklch(0.1 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.1 0 0);
@@ -87,6 +92,8 @@
 
 .dark {
   --background: oklch(0.145 0 0);
+  --about-text-color: #ffffff;
+  --about-text-shadow: none;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);

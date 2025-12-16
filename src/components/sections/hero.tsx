@@ -64,7 +64,7 @@ export const Hero = () => {
                 <div className="flex flex-col items-start justify-center z-20">
                     <div className="flex flex-wrap items-end gap-2">
                         <motion.h1
-                            className="text-3xl sm:text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 leading-none text-left"
+                            className="text-3xl sm:text-5xl md:text-7xl font-nabla leading-none text-left"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5 }}

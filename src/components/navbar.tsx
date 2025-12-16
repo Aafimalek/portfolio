@@ -14,12 +14,13 @@ import {
     IconMail,
     IconCode,
     IconSun,
-    IconMoon
+    IconMoon,
+    IconRocket
 } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 
 export const Navbar = () => {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -27,7 +28,7 @@ export const Navbar = () => {
     }, []);
 
     const toggleTheme = () => {
-        setTheme(theme === "dark" ? "light" : "dark");
+        setTheme(resolvedTheme === "dark" ? "light" : "dark");
     };
 
     const links = [
@@ -53,6 +54,13 @@ export const Navbar = () => {
             href: "#skills",
         },
         {
+            title: "Products",
+            icon: (
+                <IconRocket className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
+            ),
+            href: "#products",
+        },
+        {
             title: "Projects",
             icon: (
                 <IconBriefcase className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
@@ -74,8 +82,8 @@ export const Navbar = () => {
             href: "#contact",
         },
         {
-            title: mounted && theme === "dark" ? "Light Mode" : "Dark Mode",
-            icon: mounted && theme === "dark" ? (
+            title: mounted && resolvedTheme === "dark" ? "Light Mode" : "Dark Mode",
+            icon: mounted && resolvedTheme === "dark" ? (
                 <IconSun className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ) : (
                 <IconMoon className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />

@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 export const About = () => {
     return (
-        <SectionWrapper id="about" className="py-10 w-full">
-            <h2 className="text-2xl font-bold text-left mb-6">About Me</h2>
-            <div className="w-full text-left text-neutral-800 dark:text-neutral-200 leading-relaxed">
+        <SectionWrapper id="about" className="py-10 w-full font-doto">
+            <h2 className="text-2xl font-black text-left mb-6 text-black dark:text-white">About Me</h2>
+            <div className="w-full text-left leading-relaxed">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -15,9 +15,14 @@ export const About = () => {
                     variants={{
                         visible: { transition: { staggerChildren: 0.02 } }
                     }}
-                    className="text-neutral-800 dark:text-neutral-200 leading-relaxed text-left text-base sm:text-lg flex flex-wrap gap-1"
+                    className="leading-relaxed text-left text-base sm:text-lg flex flex-wrap gap-1"
+                    style={{ 
+                        color: 'var(--about-text-color)',
+                        textShadow: 'var(--about-text-shadow)',
+                        fontVariationSettings: '"ROND" 0'
+                    }}
                 >
-                    {"Hi there 👋 I’m Aafi Malek, an AI & ML engineering undergrad from L.D. College Of Engineering i love building cool projects and learning new things. in my free time i watch films and listen to music and go down rabbit holes. my goal is to get good at programming and earn $mrr by building cool products that millions of people use.".split(" ").map((word, index) => (
+                    {"Hi there 👋 I'm Aafi Malek, an AI & ML engineering undergrad from L.D. College Of Engineering i love building cool projects and learning new things. in my free time i watch films and listen to music and go down rabbit holes. my goal is to get good at programming and earn $mrr by building cool products that millions of people use.".split(" ").map((word, index) => (
                         <motion.span
                             key={index}
                             variants={{

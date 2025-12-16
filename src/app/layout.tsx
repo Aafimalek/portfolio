@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Doto, Nabla, VT323 } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from '@vercel/analytics/next';
@@ -8,6 +8,22 @@ import { Analytics } from '@vercel/analytics/next';
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const doto = Doto({
+  subsets: ["latin"],
+  variable: "--font-doto",
+});
+
+const nabla = Nabla({
+  subsets: ["latin"],
+  variable: "--font-nabla",
+});
+
+const vt323 = VT323({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-vt323",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} font-sans antialiased lowercase`}
+        className={`${outfit.variable} ${doto.variable} ${nabla.variable} ${vt323.variable} font-vt323 antialiased lowercase`}
       >
         <ThemeProvider
           attribute="class"
