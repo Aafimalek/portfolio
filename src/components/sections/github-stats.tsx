@@ -14,15 +14,17 @@ export const GithubStats = () => {
             <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="p-4 border rounded-none bg-white dark:bg-black w-full flex justify-center hover:shadow-lg dark:hover:shadow-white/10 transition-shadow"
+                className="p-4 border rounded-none bg-white dark:bg-black w-full overflow-x-auto hover:shadow-lg dark:hover:shadow-white/10 transition-shadow"
             >
-                <GitHubCalendar
-                    username="Aafimalek"
-                    colorScheme={theme === "dark" ? "dark" : "light"}
-                    fontSize={12}
-                    blockSize={12}
-                    blockMargin={5}
-                />
+                <div className="min-w-[700px] sm:min-w-0 flex justify-center">
+                    <GitHubCalendar
+                        username="Aafimalek"
+                        colorScheme={theme === "dark" ? "dark" : "light"}
+                        fontSize={12}
+                        blockSize={10}
+                        blockMargin={4}
+                    />
+                </div>
             </motion.div>
 
         </SectionWrapper>

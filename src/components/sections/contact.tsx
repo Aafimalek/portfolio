@@ -10,7 +10,7 @@ export const Contact = () => {
     return (
         <SectionWrapper id="contact" className="py-10 w-full mb-20">
             <h2 className="text-2xl font-bold text-left mb-4">Get in Touch</h2>
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
                 <div className="space-y-6">
                     <motion.div
                         initial="hidden"
@@ -19,9 +19,9 @@ export const Contact = () => {
                         variants={{
                             visible: { transition: { staggerChildren: 0.02 } }
                         }}
-                        className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-lg flex flex-wrap gap-1"
+                        className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-base sm:text-lg flex flex-wrap gap-1"
                     >
-                        {"I’m currently seeking exciting roles in AI & ML where I can apply my skills and grow alongside innovative teams. If you have a project, internship, or full-time position you think I’d be a great fit for, let’s connect I’d love to explore how we can work together.".split(" ").map((word, index) => (
+                        {"I'm currently seeking exciting roles in AI & ML where I can apply my skills and grow alongside innovative teams. If you have a project, internship, or full-time position you think I'd be a great fit for, let's connect I'd love to explore how we can work together.".split(" ").map((word, index) => (
                             <motion.span
                                 key={index}
                                 variants={{
@@ -41,7 +41,7 @@ export const Contact = () => {
                         variants={{
                             visible: { transition: { staggerChildren: 0.1 } }
                         }}
-                        className="space-y-4 mt-8"
+                        className="space-y-3 sm:space-y-4 mt-8"
                     >
                         {[
                             { href: "mailto:aafimalek2023@gmail.com", icon: Mail, text: "aafimalek2023@gmail.com" },
@@ -61,10 +61,11 @@ export const Contact = () => {
                                 target={item.href.startsWith("http") ? "_blank" : undefined}
                                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                 whileHover={{ x: 10, scale: 1.02, backgroundColor: "rgba(0,0,0,0.05)" }}
-                                className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group p-2 rounded-none"
+                                whileTap={{ scale: 0.98 }}
+                                className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group p-2 sm:p-3 rounded-none active:bg-neutral-100 dark:active:bg-neutral-800"
                             >
-                                <item.icon className="w-5 h-5" />
-                                <span>{item.text}</span>
+                                <item.icon className="w-5 h-5 flex-shrink-0" />
+                                <span className="text-sm sm:text-base truncate">{item.text}</span>
                             </motion.a>
                         ))}
                     </motion.div>
@@ -78,7 +79,7 @@ export const Contact = () => {
                     className="h-full"
                 >
                     <GlowCard className="h-full">
-                        <div className="p-8 h-full">
+                        <div className="p-4 sm:p-8 h-full">
                             <form className="space-y-4" onSubmit={(e) => {
                                 e.preventDefault();
                                 const formData = new FormData(e.currentTarget);
@@ -94,7 +95,7 @@ export const Contact = () => {
                                         name="name"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
-                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all"
+                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all text-base"
                                         placeholder="Your Name"
                                     />
                                 </div>
@@ -105,7 +106,7 @@ export const Contact = () => {
                                         type="email"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
-                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all"
+                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all text-base"
                                         placeholder="Your Email"
                                     />
                                 </div>
@@ -115,12 +116,12 @@ export const Contact = () => {
                                         name="message"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
-                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all min-h-[150px]"
+                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all min-h-[120px] sm:min-h-[150px] text-base resize-none"
                                         placeholder="Your Message"
                                     />
                                 </div>
                                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                    <Button className="w-full" type="submit">Send Message</Button>
+                                    <Button className="w-full py-3" type="submit">Send Message</Button>
                                 </motion.div>
                             </form>
                         </div>

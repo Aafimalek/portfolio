@@ -120,7 +120,7 @@ export const Skills = () => {
         <SectionWrapper id="skills" className="py-10 w-full overflow-hidden">
             <h2 className="text-2xl font-bold text-left mb-4">Skills</h2>
             <Card className="bg-transparent border-neutral-200 dark:border-white/[0.1] shadow-none">
-                <CardContent className="p-0 h-[12rem] flex flex-col items-center justify-center relative overflow-hidden">
+                <CardContent className="p-0 h-[10rem] sm:h-[12rem] flex flex-col items-center justify-center relative overflow-hidden">
                     <InfiniteMovingCards
                         items={skills}
                         direction="right"

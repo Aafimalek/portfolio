@@ -234,30 +234,12 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
 
 export const Products = () => {
     return (
-        <SectionWrapper id="products" className="py-16 w-full overflow-hidden">
+        <SectionWrapper id="products" className="py-10 w-full overflow-hidden">
             {/* Section Header */}
-            <div className="mb-12 md:mb-16">
-                 <h2 className="text-2xl font-bold text-left mb-6 text-neutral-900 dark:text-neutral-100">Products</h2>
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col md:flex-row md:items-end justify-between gap-6"
-                >
-                    <div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-                            Built & <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-cyan-500">Deployed</span>
-                        </h2>
-                        <p className="text-neutral-600 dark:text-neutral-400 max-w-lg leading-relaxed">
-                            Full-stack applications taken from concept to production. 
-                            Built with modern technologies and a focus on user experience.
-                        </p>
-                    </div>
-                </motion.div>
-            </div>
+            <h2 className="text-2xl font-bold text-left mb-6 text-neutral-900 dark:text-neutral-100">Products</h2>
             
             {/* Products Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {products.map((product, index) => (
                     <ProductCard key={product.name} product={product} index={index} />
                 ))}
@@ -268,7 +250,7 @@ export const Products = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="mt-16 text-center"
+                className="mt-10 text-center"
             >
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 text-xs font-mono text-neutral-500 dark:text-neutral-400">
                     <IconSparkles className="w-3.5 h-3.5 text-amber-500" />

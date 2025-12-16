@@ -91,15 +91,15 @@ export const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
-                        className="flex gap-4 mt-8"
+                        className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto"
                     >
-                        <a href="#projects">
-                            <Button className="transition-all duration-300 hover:scale-105 active:scale-95 !bg-neutral-900 dark:!bg-white !text-white dark:!text-black hover:!bg-neutral-700 dark:hover:!bg-neutral-300 active:!bg-neutral-800 dark:active:!bg-neutral-400 shadow-lg hover:shadow-xl after:bg-white dark:after:bg-black">
+                        <a href="#projects" className="w-full sm:w-auto">
+                            <Button className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95 !bg-neutral-900 dark:!bg-white !text-white dark:!text-black hover:!bg-neutral-700 dark:hover:!bg-neutral-300 active:!bg-neutral-800 dark:active:!bg-neutral-400 shadow-lg hover:shadow-xl after:bg-white dark:after:bg-black">
                                 View Projects
                             </Button>
                         </a>
-                        <a href="/RESUME_AAFIKHAN_MALEK.pdf" download="RESUME_AAFIKHAN_MALEK.pdf">
-                            <Button variant="outline" className="transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-neutral-200 dark:border-neutral-800 hover:!bg-neutral-100 dark:hover:!bg-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 active:!bg-neutral-200 dark:active:!bg-neutral-700 after:bg-black dark:after:bg-white">
+                        <a href="/RESUME_AAFIKHAN_MALEK.pdf" download="RESUME_AAFIKHAN_MALEK.pdf" className="w-full sm:w-auto">
+                            <Button variant="outline" className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-neutral-200 dark:border-neutral-800 hover:!bg-neutral-100 dark:hover:!bg-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 active:!bg-neutral-200 dark:active:!bg-neutral-700 after:bg-black dark:after:bg-white">
                                 <Download className="mr-2 h-4 w-4" /> Download Resume
                             </Button>
                         </a>

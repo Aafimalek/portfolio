@@ -36,40 +36,47 @@ const FloatingDockMobile = ({
                 {open && (
                     <motion.div
                         layoutId="nav"
-                        className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2"
+                        className="absolute bottom-full mb-3 right-0 flex flex-col gap-2 p-2 bg-neutral-50/95 dark:bg-neutral-900/95 backdrop-blur-md border border-neutral-200 dark:border-neutral-800"
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.9 }}
                     >
                         {items.map((item, idx) => (
                             <motion.div
                                 key={item.title}
-                                initial={{ opacity: 0, y: 10 }}
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{
                                     opacity: 1,
-                                    y: 0,
+                                    x: 0,
                                 }}
                                 exit={{
                                     opacity: 0,
-                                    y: 10,
+                                    x: 20,
                                     transition: {
-                                        delay: idx * 0.05,
+                                        delay: idx * 0.03,
                                     },
                                 }}
-                                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
+                                transition={{ delay: (items.length - 1 - idx) * 0.03 }}
                             >
                                 {item.href ? (
                                     <Link
                                         href={item.href}
                                         key={item.title}
-                                        className="h-10 w-10 rounded-none bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center"
+                                        onClick={() => setOpen(false)}
+                                        className="h-11 w-11 rounded-none bg-transparent hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 flex items-center justify-center transition-colors active:scale-95"
                                     >
-                                        <div className="h-4 w-4">{item.icon}</div>
+                                        <div className="h-5 w-5">{item.icon}</div>
                                     </Link>
                                 ) : (
                                     <button
-                                        onClick={item.onClick}
+                                        onClick={() => {
+                                            item.onClick?.();
+                                            setOpen(false);
+                                        }}
                                         key={item.title}
-                                        className="h-10 w-10 rounded-none bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center"
+                                        className="h-11 w-11 rounded-none bg-transparent hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 flex items-center justify-center transition-colors active:scale-95"
                                     >
-                                        <div className="h-4 w-4">{item.icon}</div>
+                                        <div className="h-5 w-5">{item.icon}</div>
                                     </button>
                                 )}
                             </motion.div>
@@ -77,12 +84,16 @@ const FloatingDockMobile = ({
                     </motion.div>
                 )}
             </AnimatePresence>
-            <button
+            <motion.button
                 onClick={() => setOpen(!open)}
-                className="h-10 w-10 rounded-none bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center"
+                whileTap={{ scale: 0.9 }}
+                className="h-12 w-12 rounded-none bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center border border-neutral-200 dark:border-neutral-800 shadow-lg"
             >
-                <div className="h-5 w-5 bg-neutral-800 dark:bg-neutral-100 rounded-sm" />
-            </button>
+                <motion.div 
+                    animate={{ rotate: open ? 45 : 0 }}
+                    className="h-5 w-5 bg-neutral-800 dark:bg-neutral-100 rounded-sm"
+                />
+            </motion.button>
         </div>
     );
 };
