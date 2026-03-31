@@ -5,6 +5,7 @@ import { Skills } from "@/components/sections/skills";
 import { Products } from "@/components/sections/products";
 import { Projects } from "@/components/sections/projects";
 import { Education } from "@/components/sections/education";
+import { Blogs } from "@/components/sections/blogs";
 import { Contact } from "@/components/sections/contact";
 
 import { GithubStats } from "@/components/sections/github-stats";
@@ -33,6 +34,7 @@ export default function Home() {
                 <Skills />
                 <Products />
                 <Projects />
+                <Blogs />
                 <Education />
                 <GithubStats />
                 <Contact />

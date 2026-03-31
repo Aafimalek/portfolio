@@ -98,7 +98,7 @@ export const Hero = () => {
                                 View Projects
                             </Button>
                         </a>
-                        <a href="/RESUME_AAFI_MALEK.pdf" download="RESUME_AAFI_MALEK.pdf" className="w-full sm:w-auto">
+                        <a href="/RESUME_AAFI_KHAN_MALEK.pdf" download="RESUME_AAFI_KHAN_MALEK.pdf" className="w-full sm:w-auto">
                             <Button variant="outline" className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-neutral-200 dark:border-neutral-800 hover:!bg-neutral-100 dark:hover:!bg-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 active:!bg-neutral-200 dark:active:!bg-neutral-700 after:bg-black dark:after:bg-white">
                                 <Download className="mr-2 h-4 w-4" /> Download Resume
                             </Button>

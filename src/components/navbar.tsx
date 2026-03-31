@@ -15,7 +15,8 @@ import {
     IconCode,
     IconSun,
     IconMoon,
-    IconRocket
+    IconRocket,
+    IconArticle
 } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 
@@ -66,6 +67,13 @@ export const Navbar = () => {
                 <IconBriefcase className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
             ),
             href: "#projects",
+        },
+        {
+            title: "Blogs",
+            icon: (
+                <IconArticle className="h-full w-full text-neutral-600 dark:text-neutral-300" />
+            ),
+            href: "#blogs",
         },
         {
             title: "Education",
