@@ -1,0 +1,32 @@
+---
+description: Project context + how to run it
+alwaysApply: true
+---
+
+# Project context
+
+This repo is a personal portfolio built with:
+- Next.js App Router (see `src/app/`)
+- React 19 + TypeScript
+- Tailwind CSS v4 + `tw-animate-css`
+- shadcn/ui + Radix UI (see `components.json`, `src/components/ui/`)
+
+## Commands
+
+- Dev: `npm run dev`
+- Lint: `npm run lint`
+- Build: `npm run build`
+- Prod: `npm run start`
+
+## Codebase map
+
+- Pages/layout: `src/app/layout.tsx`, `src/app/page.tsx`, `src/app/globals.css`
+- Components: `src/components/**`
+- UI primitives (shadcn): `src/components/ui/**`
+- Utils: `src/lib/utils.ts` (aliases via `@/*` -> `src/*`)
+
+## House rules
+
+- Prefer simple, readable components; keep animations purposeful (Framer Motion exists).
+- Avoid introducing new UI libraries unless necessary; reuse shadcn/Radix primitives.
+- Keep changes consistent with existing style/structure in `src/components/sections/*`.

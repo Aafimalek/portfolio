@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -35,11 +34,11 @@ const FloatingDockMobile = ({
             <AnimatePresence>
                 {open && (
                     <motion.div
-                        layoutId="nav"
                         className="absolute bottom-full mb-3 right-0 flex flex-col gap-2 p-2 bg-neutral-50/95 dark:bg-neutral-900/95 backdrop-blur-md border border-neutral-200 dark:border-neutral-800"
-                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                         {items.map((item, idx) => (
                             <motion.div
@@ -149,27 +148,13 @@ function IconContainer({
     const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
     const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
 
-    const width = useSpring(widthTransform, {
-        mass: 1,
-        stiffness: 150,
-        damping: 25,
-    });
-    const height = useSpring(heightTransform, {
-        mass: 1,
-        stiffness: 150,
-        damping: 25,
-    });
+    const springConfig = { mass: 0.1, stiffness: 150, damping: 12, restDelta: 0.001 };
 
-    const widthIcon = useSpring(widthTransformIcon, {
-        mass: 1,
-        stiffness: 150,
-        damping: 25,
-    });
-    const heightIcon = useSpring(heightTransformIcon, {
-        mass: 1,
-        stiffness: 150,
-        damping: 25,
-    });
+    const width = useSpring(widthTransform, springConfig);
+    const height = useSpring(heightTransform, springConfig);
+
+    const widthIcon = useSpring(widthTransformIcon, springConfig);
+    const heightIcon = useSpring(heightTransformIcon, springConfig);
 
     const [hovered, setHovered] = useState(false);
 
@@ -184,10 +169,11 @@ function IconContainer({
             <AnimatePresence>
                 {hovered && (
                     <motion.div
-                        initial={{ opacity: 0, y: 10, x: "-50%" }}
+                        initial={{ opacity: 0, y: 4, x: "-50%" }}
                         animate={{ opacity: 1, y: 0, x: "-50%" }}
-                        exit={{ opacity: 0, y: 2, x: "-50%" }}
-                        className="px-2 py-0.5 whitespace-pre rounded-md bg-neutral-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-neutral-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+                        exit={{ opacity: 0, y: 4, x: "-50%" }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className="px-2 py-0.5 whitespace-pre rounded-md bg-neutral-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-neutral-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs pointer-events-none"
                     >
                         {title}
                     </motion.div>

@@ -12,6 +12,15 @@ import { useState } from "react";
 
 const projects = [
     {
+        title: "T3 Chat",
+        year: "2025",
+        description: "A real-time AI chat application built with the T3 stack.",
+        tags: ["T3 Stack", "Next.js", "AI", "Full Stack"],
+        videoUrl: "https://www.youtube.com/embed/qjMPYaxhqQw?autoplay=1&mute=1&controls=0&loop=1&playlist=qjMPYaxhqQw",
+        liveUrl: "https://t3chat-indol.vercel.app/",
+        githubUrl: "https://github.com/Aafimalek",
+    },
+    {
         title: "Advanced RAG",
         year: "2025",
         description: "Advanced Retrieval-Augmented Generation system.",

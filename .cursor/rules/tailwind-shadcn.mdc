@@ -1,0 +1,12 @@
+---
+description: Tailwind v4 + shadcn/ui conventions
+globs: **/*.{tsx,ts,css}
+alwaysApply: false
+---
+
+# Tailwind + shadcn/ui
+
+- Prefer Tailwind utility classes over custom CSS unless it’s truly global (`src/app/globals.css`).
+- Use `cn(...)` from `@/lib/utils` for conditional classnames (don’t hand-roll).
+- Reuse primitives in `src/components/ui/*` rather than duplicating button/input/card variants.
+- Keep design tokens consistent with CSS variables in `src/app/globals.css` (light/dark values are defined there).

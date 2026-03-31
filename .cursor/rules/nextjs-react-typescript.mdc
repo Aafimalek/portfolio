@@ -1,0 +1,21 @@
+---
+description: Next.js + React + TypeScript patterns
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Next.js + React + TypeScript
+
+- Use App Router conventions (Server Components by default; add `"use client"` only when needed).
+- Prefer named exports for components/utilities unless the file already uses default export.
+- Keep components pure; push side effects into hooks or event handlers.
+- Use path aliases (`@/components`, `@/lib`, `@/hooks`) instead of deep relative imports.
+
+## Accessibility + UI
+
+- Ensure interactive elements have labels/aria where needed.
+- Keep keyboard navigation intact (Radix components already help; don’t break it with div-onClick).
+
+## Data / SEO files
+
+- SEO endpoints live in `src/app/{sitemap.ts,robots.ts,manifest.ts}`; keep them deterministic and build-safe.
