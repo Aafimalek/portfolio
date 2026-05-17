@@ -119,7 +119,7 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
 
 export const Products = () => {
     return (
-        <SectionWrapper id="products" className="w-full overflow-hidden py-10">
+        <SectionWrapper id="products" className="w-full py-10">
             <h2>Products</h2>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
