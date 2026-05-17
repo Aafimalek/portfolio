@@ -580,6 +580,7 @@
 
   .hero-links-grid .box-link {
     border-right: 1px solid var(--line-soft);
+    border-bottom: 0; /* No bottom border on desktop, all are in the bottom row */
   }
 
   .hero-links-grid .box-link:last-child {
@@ -908,6 +909,11 @@
 
     .hero-links-grid .box-link {
       border-right: 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .hero-links-grid .box-link:last-child {
+      border-bottom: 0;
     }
 
     .profile-grid {
