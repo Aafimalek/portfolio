@@ -1,110 +1,57 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { FloatingDock } from "@/components/ui/floating-dock";
-import {
-    IconBrandGithub,
-    IconBrandX,
-    IconExchange,
-    IconHome,
-    IconNewSection,
-    IconTerminal2,
-    IconUser,
-    IconBriefcase,
-    IconSchool,
-    IconMail,
-    IconCode,
-    IconSun,
-    IconMoon,
-    IconRocket,
-    IconArticle
-} from "@tabler/icons-react";
+
+import React, { useSyncExternalStore } from "react";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
+
+const subscribe = () => () => undefined;
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+const navItems = [
+    { title: "About", href: "#about" },
+    { title: "Tech Stack", href: "#skills" },
+    { title: "Products", href: "#products" },
+    { title: "Projects", href: "#projects" },
+    { title: "Blog", href: "#blogs" },
+    { title: "Contact", href: "#contact" },
+];
 
 export const Navbar = () => {
     const { resolvedTheme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const toggleTheme = () => {
-        setTheme(resolvedTheme === "dark" ? "light" : "dark");
-    };
-
-    const links = [
-        {
-            title: "Home",
-            icon: (
-                <IconHome className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#",
-        },
-        {
-            title: "About",
-            icon: (
-                <IconUser className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#about",
-        },
-        {
-            title: "Skills",
-            icon: (
-                <IconCode className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#skills",
-        },
-        {
-            title: "Products",
-            icon: (
-                <IconRocket className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#products",
-        },
-        {
-            title: "Projects",
-            icon: (
-                <IconBriefcase className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#projects",
-        },
-        {
-            title: "Blogs",
-            icon: (
-                <IconArticle className="h-full w-full text-neutral-600 dark:text-neutral-300" />
-            ),
-            href: "#blogs",
-        },
-        {
-            title: "Education",
-            icon: (
-                <IconSchool className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#education",
-        },
-        {
-            title: "Get in Touch",
-            icon: (
-                <IconMail className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            href: "#contact",
-        },
-        {
-            title: mounted && resolvedTheme === "dark" ? "Light Mode" : "Dark Mode",
-            icon: mounted && resolvedTheme === "dark" ? (
-                <IconSun className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ) : (
-                <IconMoon className="h-full w-full text-neutral-600 dark:text-neutral-300 dark:text-neutral-300" />
-            ),
-            onClick: toggleTheme,
-        },
-    ];
+    const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+    const isDark = mounted && resolvedTheme === "dark";
 
     return (
-        <div className="flex items-center justify-center fixed bottom-10 inset-x-0 z-[5000]">
-            <FloatingDock
-                items={links}
-            />
-        </div>
+        <header className="fixed inset-x-0 top-0 z-[5000] border-b border-[var(--line-soft)] bg-[var(--page-bg)]/88 backdrop-blur-xl">
+            <nav className="site-nav mx-auto h-14 w-full max-w-[64rem] border-x border-[var(--line-soft)]">
+                <a
+                    href="#"
+                    className="pixel-brand flex h-full w-full items-center justify-center border-r border-[var(--line-soft)] text-sm font-black tracking-tight"
+                    aria-label="Aafi Malek home"
+                >
+                    AM
+                </a>
+                <div className="nav-main flex min-w-0 items-center overflow-x-auto">
+                    {navItems.map((item) => (
+                        <a
+                            key={item.href}
+                            href={item.href}
+                            className="nav-cell whitespace-nowrap border-r border-[var(--line-soft)] px-3 py-5 text-xs font-semibold text-neutral-600 transition-colors hover:bg-[var(--module-hover)] hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-white sm:px-4"
+                        >
+                            {item.title}
+                        </a>
+                    ))}
+                </div>
+                <button
+                    type="button"
+                    aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                    onClick={() => setTheme(isDark ? "light" : "dark")}
+                    className="flex h-full w-full items-center justify-center border-l border-[var(--line-soft)] text-neutral-700 transition-colors hover:bg-[var(--module-hover)] dark:text-neutral-200"
+                >
+                    {isDark ? <IconSun className="h-4 w-4" /> : <IconMoon className="h-4 w-4" />}
+                </button>
+            </nav>
+        </header>
     );
 };

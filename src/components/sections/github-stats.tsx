@@ -9,12 +9,12 @@ import { motion } from "framer-motion";
 export const GithubStats = () => {
     const { resolvedTheme } = useTheme();
     return (
-        <SectionWrapper id="github-stats" className="py-10 w-full flex flex-col items-center justify-center">
-            <h2 className="text-2xl font-bold text-left w-full mb-6">GitHub Contributions</h2>
+        <SectionWrapper id="github-stats" className="flex w-full flex-col items-center justify-center py-10">
+            <h2>GitHub Contributions</h2>
             <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="p-4 border rounded-none bg-white dark:bg-black w-full overflow-x-auto hover:shadow-lg dark:hover:shadow-white/10 transition-shadow"
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 260, damping: 24 }}
+                className="module-card w-full overflow-x-auto p-4"
             >
                 <div className="min-w-[700px] sm:min-w-0 flex justify-center">
                     <GitHubCalendar

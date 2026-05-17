@@ -12,10 +12,10 @@ export const GlowCard = ({
 }) => {
     return (
         <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileHover={{ y: -2 }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
             className={cn(
-                "bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-none overflow-hidden transition-all duration-300 hover:shadow-[-8px_0_15px_-3px_rgba(0,0,0,0.3),8px_0_15px_-3px_rgba(0,0,0,0.3)] dark:hover:shadow-[-8px_0_15px_-3px_rgba(255,255,255,0.15),8px_0_15px_-3px_rgba(255,255,255,0.15)]",
+                "modern-card border border-[var(--line-soft)] bg-[var(--module-bg)] rounded-none overflow-hidden transition-colors duration-300 hover:bg-[var(--module-hover)]",
                 className
             )}
         >

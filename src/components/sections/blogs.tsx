@@ -3,7 +3,6 @@ import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { IconArrowUpRight, IconClock, IconBrandMedium } from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";

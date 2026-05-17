@@ -1,40 +1,41 @@
 "use client";
+
 import React from "react";
-import { SectionWrapper } from "@/components/section-wrapper";
 import { motion } from "framer-motion";
+import { SectionWrapper } from "@/components/section-wrapper";
+
+const aboutPoints = [
+    "AI & ML engineering undergrad from L.D. College of Engineering, Ahmedabad, focused on shipping practical machine learning and full-stack products.",
+    "I like turning messy ideas into working demos: RAG systems, AI note tools, animation generators, deepfake detection, recommendation systems, and backend-heavy web apps.",
+    "Currently improving at production engineering, model integration, distributed backends, and building products that can grow into real revenue.",
+    "Outside code, I watch films, listen to music, and follow long technical rabbit holes until they turn into projects.",
+];
 
 export const About = () => {
     return (
-        <SectionWrapper id="about" className="py-10 w-full font-doto">
-            <h2 className="text-2xl font-black text-left mb-6 text-black dark:text-white">About Me</h2>
-            <div className="w-full text-left leading-relaxed">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={{
-                        visible: { transition: { staggerChildren: 0.02 } }
-                    }}
-                    className="leading-relaxed text-left text-base sm:text-lg flex flex-wrap gap-1"
-                    style={{ 
-                        color: 'var(--about-text-color)',
-                        textShadow: 'var(--about-text-shadow)',
-                        fontVariationSettings: '"ROND" 0'
-                    }}
-                >
-                    {"Hi there 👋 I'm Aafi Malek, an AI & ML engineering undergrad from L.D. College Of Engineering i love building cool projects and learning new things. in my free time i watch films and listen to music and go down rabbit holes. my goal is to get good at programming and earn $mrr by building cool products that millions of people use.".split(" ").map((word, index) => (
-                        <motion.span
-                            key={index}
-                            variants={{
-                                hidden: { opacity: 0, y: 10 },
-                                visible: { opacity: 1, y: 0 }
-                            }}
-                        >
-                            {word}
-                        </motion.span>
-                    ))}
-                </motion.div>
-            </div>
+        <SectionWrapper id="about" className="w-full py-10">
+            <h2>About</h2>
+            <motion.ul
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                    visible: { transition: { staggerChildren: 0.06 } },
+                }}
+                className="section-list"
+            >
+                {aboutPoints.map((point) => (
+                    <motion.li
+                        key={point}
+                        variants={{
+                            hidden: { opacity: 0, y: 10 },
+                            visible: { opacity: 1, y: 0 },
+                        }}
+                    >
+                        {point}
+                    </motion.li>
+                ))}
+            </motion.ul>
         </SectionWrapper>
     );
 };

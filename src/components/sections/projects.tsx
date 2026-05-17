@@ -2,10 +2,10 @@
 import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { GlowCard } from "@/components/ui/glow-card";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import { IconBrandGithub, IconWorld, IconPlayerPlay } from "@tabler/icons-react";
+import { IconArrowUpRight, IconBrandGithub, IconPlayerPlay } from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -148,8 +148,7 @@ const projects = [
     }
 ];
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 // ... (imports remain the same)
 
@@ -190,12 +189,12 @@ const VideoCard = ({ videoUrl, title }: { videoUrl: string, title: string }) => 
                     src={thumbnailUrl}
                     alt={title}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                    className="object-cover grayscale opacity-75 transition duration-500 group-hover:scale-105 group-hover:opacity-95 group-hover:grayscale-0"
                 />
             )}
             <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 bg-white/30 backdrop-blur-sm rounded-none flex items-center justify-center group-hover:bg-white/50 transition-colors">
-                    <IconPlayerPlay className="w-6 h-6 text-white fill-white" />
+                <div className="flex h-12 w-12 items-center justify-center border border-white/35 bg-black/55 text-white backdrop-blur-sm transition group-hover:bg-white group-hover:text-black">
+                    <IconPlayerPlay className="w-6 h-6 fill-current" />
                 </div>
             </div>
         </div>
@@ -211,7 +210,7 @@ export const Projects = () => {
 
     return (
         <SectionWrapper id="projects" className="py-10 w-full">
-            <h2 className="text-2xl font-bold text-left mb-6">Projects</h2>
+            <h2>Projects</h2>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {displayedProjects.map((project, index) => (
                     <motion.div
@@ -221,14 +220,14 @@ export const Projects = () => {
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
                     >
-                        <GlowCard className="h-full flex flex-col p-4">
-                            <VideoCard videoUrl={project.videoUrl} title={project.title} />
+                            <GlowCard className="h-full flex flex-col p-4">
+                                <VideoCard videoUrl={project.videoUrl} title={project.title} />
                             <CardHeader className="p-0 mt-4">
                                 <div className="flex justify-between items-start">
                                     <Link href={project.liveUrl} target="_blank" className="hover:underline decoration-neutral-500 underline-offset-4">
                                         <CardTitle className="text-base font-bold text-left flex items-center gap-2">
                                             {project.title}
-                                            <IconWorld className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
+                                            <IconArrowUpRight className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
                                         </CardTitle>
                                     </Link>
                                     <Badge variant="secondary" className="text-[10px]">{project.year}</Badge>
@@ -238,7 +237,7 @@ export const Projects = () => {
                             <CardContent className="p-0 mt-auto">
                                 <div className="flex flex-wrap gap-2 mt-2 justify-start mb-4">
                                     {project.tags.map((tag) => (
-                                        <span key={tag} className="text-[10px] px-2 py-1 bg-neutral-100 dark:bg-neutral-900 rounded-none text-neutral-600 dark:text-neutral-300 lowercase">
+                                        <span key={tag} className="text-[10px] px-2 py-1 border border-[var(--line-soft)] bg-[var(--module-hover)] rounded-none text-neutral-600 dark:text-neutral-300 lowercase">
                                             {tag}
                                         </span>
                                     ))}
@@ -254,8 +253,8 @@ export const Projects = () => {
                                             whileTap={{ scale: 0.98 }}
                                             className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-none text-xs font-medium hover:opacity-90 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-white dark:after:bg-black after:transition-transform after:duration-300 hover:after:scale-x-100"
                                         >
-                                            <IconWorld className="h-4 w-4" />
-                                            Live Demo
+                                            <IconArrowUpRight className="h-4 w-4" />
+                                            Open
                                         </motion.div>
                                     </Link>
                                     <Link
@@ -269,7 +268,7 @@ export const Projects = () => {
                                             className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-none text-xs font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-black dark:after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100"
                                         >
                                             <IconBrandGithub className="h-4 w-4" />
-                                            GitHub
+                                            Code
                                         </motion.div>
                                     </Link>
                                 </div>

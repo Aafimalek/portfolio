@@ -1,29 +1,19 @@
 import type { Metadata } from "next";
-import { Outfit, Doto, Nabla, VT323 } from "next/font/google";
+import { JetBrains_Mono, Sora } from "next/font/google";
+import { GeistPixelSquare } from "geist/font/pixel";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from '@vercel/analytics/next';
 
 
-const outfit = Outfit({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-sora",
 });
 
-const doto = Doto({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-doto",
-});
-
-const nabla = Nabla({
-  subsets: ["latin"],
-  variable: "--font-nabla",
-});
-
-const vt323 = VT323({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-vt323",
+  variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
@@ -116,7 +106,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${doto.variable} ${nabla.variable} ${vt323.variable} font-vt323 antialiased lowercase`}
+        className={`${sora.variable} ${jetbrainsMono.variable} ${GeistPixelSquare.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

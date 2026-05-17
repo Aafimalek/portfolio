@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence, type MotionValue } from "framer-motion";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 
@@ -128,7 +128,7 @@ function IconContainer({
     href,
     onClick,
 }: {
-    mouseX: any;
+    mouseX: MotionValue<number>;
     title: string;
     icon: React.ReactNode;
     href?: string;

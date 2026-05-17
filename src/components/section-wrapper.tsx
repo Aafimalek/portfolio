@@ -10,8 +10,12 @@ export const SectionWrapper = ({ children, className, id }: { children: React.Re
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={cn("scroll-mt-4", className)}
+            className={cn("linework-section scroll-mt-16", className)}
         >
+            <div aria-hidden="true" className="linework-layer">
+                <span className="linework-notch linework-notch-a" />
+                <span className="linework-notch linework-notch-b" />
+            </div>
             {children}
         </motion.section>
     );

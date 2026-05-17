@@ -15,7 +15,7 @@ export const RoleRotator = ({ className }: { className?: string }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % roles.length);
-        }, 8000);
+        }, 3000);
         return () => clearInterval(interval);
     }, []);
 
@@ -28,7 +28,7 @@ export const RoleRotator = ({ className }: { className?: string }) => {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.5, ease: "circOut" }}
+                        transition={{ duration: 0.25, ease: "circOut" }}
                         className="absolute inset-0 flex items-center justify-center"
                     >
                         <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-white/10 dark:bg-black/10 backdrop-blur-md border border-black/5 dark:border-white/10 text-neutral-900 dark:text-neutral-100 text-[10px] sm:text-sm font-medium rounded-none whitespace-nowrap shadow-sm">
