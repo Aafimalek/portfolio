@@ -6,7 +6,7 @@ const education = [
     {
         degree: "B.E. in Artificial Intelligence & Machine Learning",
         institution: "L.D. College of Engineering, Ahmedabad",
-        year: "Expected June 2026",
+        year: "Graduated",
         grade: "CGPA: 8.0"
     },
     {
@@ -19,8 +19,7 @@ const education = [
 
 import { motion } from "framer-motion";
 
-// ... (education array remains the same)
-
+// Display the education history, including the confirmed graduation status.
 export const Education = () => {
     return (
         <SectionWrapper id="education" className="py-10 w-full">

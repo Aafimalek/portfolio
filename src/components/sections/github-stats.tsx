@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { motion } from "framer-motion";
 
+// Show live contribution data and retain a direct profile link if the service is unavailable.
 export const GithubStats = () => {
     const { resolvedTheme } = useTheme();
     return (
@@ -23,8 +24,10 @@ export const GithubStats = () => {
                         fontSize={12}
                         blockSize={10}
                         blockMargin={4}
+                        errorMessage="Contribution graph unavailable right now."
                     />
                 </div>
+                <a className="github-profile-link" href="https://github.com/Aafimalek" target="_blank" rel="noopener noreferrer">View activity on GitHub ↗</a>
             </motion.div>
 
         </SectionWrapper>

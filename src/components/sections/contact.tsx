@@ -6,6 +6,7 @@ import { Mail, MapPin, Phone, Twitter, Linkedin, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { GlowCard } from "@/components/ui/glow-card";
 
+// Offer direct contact links and prepare a visitor's message in WhatsApp.
 export const Contact = () => {
     return (
         <SectionWrapper id="contact" className="py-10 w-full mb-20">
@@ -21,7 +22,7 @@ export const Contact = () => {
                         }}
                         className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-base sm:text-lg flex flex-wrap gap-1"
                     >
-                        {"I'm currently seeking exciting roles in AI & ML where I can apply my skills and grow alongside innovative teams. If you have a project, internship, or full-time position you think I'd be a great fit for, let's connect I'd love to explore how we can work together.".split(" ").map((word, index) => (
+                        {"I'm open to full-time AI engineering opportunities. If you're building an AI product or looking for an engineer, I'd love to hear from you.".split(" ").map((word, index) => (
                             <motion.span
                                 key={index}
                                 variants={{
@@ -86,12 +87,13 @@ export const Contact = () => {
                                 const name = formData.get("name");
                                 const email = formData.get("email");
                                 const message = formData.get("message");
-                                const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+                                const whatsappMessage = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
                                 window.open(`https://wa.me/917574067294?text=${whatsappMessage}`, "_blank");
                             }}>
                                 <div>
-                                    <label className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Name</label>
+                                    <label htmlFor="contact-name" className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Name</label>
                                     <motion.input
+                                        id="contact-name"
                                         name="name"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
@@ -100,8 +102,9 @@ export const Contact = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Email</label>
+                                    <label htmlFor="contact-email" className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Email</label>
                                     <motion.input
+                                        id="contact-email"
                                         name="email"
                                         type="email"
                                         required
@@ -111,8 +114,9 @@ export const Contact = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Message</label>
+                                    <label htmlFor="contact-message" className="text-sm text-neutral-600 dark:text-neutral-300 mb-2 block text-left">Message</label>
                                     <motion.textarea
+                                        id="contact-message"
                                         name="message"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
@@ -121,7 +125,7 @@ export const Contact = () => {
                                     />
                                 </div>
                                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                    <Button className="w-full py-3" type="submit">Send Message</Button>
+                                    <Button className="w-full py-3" type="submit">Continue to WhatsApp</Button>
                                 </motion.div>
                             </form>
                         </div>

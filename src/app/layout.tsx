@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Aafi Malek",
   },
   description:
-    "Aafi Malek (Aafikhan Malek) - AI/ML Engineering student at L.D. College Of Engineering, Ahmedabad. Full Stack Developer from Jamnagar, Gujarat. Building innovative machine learning solutions, web applications, and products. View projects, skills, and contact information.",
+    "Aafi Malek is an AI/ML engineer building agents, retrieval systems, speech applications and open-source software.",
   keywords: [
     "Aafi Malek",
     "Aafikhan Malek",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "Deep Learning",
     "Data Science",
   ],
-  authors: [{ name: "Aafi Malek", url: "https://www.aafimalek.live" }],
+  authors: [{ name: "Aafi Malek", url: "https://aafi.vercel.app" }],
   creator: "Aafi Malek",
   publisher: "Aafi Malek",
   robots: {
@@ -60,21 +60,21 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.aafimalek.live",
+    canonical: "https://aafi.vercel.app",
   },
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
-  metadataBase: new URL("https://www.aafimalek.live"),
+  metadataBase: new URL("https://aafi.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.aafimalek.live/",
+    url: "https://aafi.vercel.app/",
     siteName: "Aafi Malek Portfolio",
     title: "Aafi Malek | AI & ML Engineer | Full Stack Developer",
     description:
-      "Aafi Malek (Aafikhan Malek) - AI/ML Engineering student at L.D. College Of Engineering, Ahmedabad. Full Stack Developer from Jamnagar building innovative solutions.",
+      "AI/ML engineer building agents, retrieval systems, speech applications and open-source software.",
     images: [
       {
         url: "/og-image.png",
@@ -88,12 +88,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Aafi Malek | AI & ML Engineer | Full Stack Developer",
     description:
-      "AI/ML Engineering student at LDCE, Ahmedabad. Full Stack Developer from Jamnagar building innovative solutions.",
+      "AI/ML engineer building agents, retrieval systems, speech applications and open-source software.",
     images: ["/og-image.png"],
-    creator: "@aafimalek",
-  },
-  verification: {
-    google: "your-google-verification-code", // Replace with actual code from Google Search Console
+    creator: "@aafimalek2032",
   },
   category: "technology",
 };

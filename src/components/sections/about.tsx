@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/section-wrapper";
 
 const aboutPoints = [
-    "AI & ML engineering undergrad from L.D. College of Engineering, Ahmedabad, focused on shipping practical machine learning and full-stack products.",
-    "I like turning messy ideas into working demos: RAG systems, AI note tools, animation generators, deepfake detection, recommendation systems, and backend-heavy web apps.",
-    "Currently improving at production engineering, model integration, distributed backends, and building products that can grow into real revenue.",
+    "AI & ML engineer and L.D. College of Engineering graduate, building practical AI applications and full-stack products.",
+    "My work includes LLM agents, retrieval systems, speech recognition, voice applications, and the APIs and interfaces around them.",
+    "I contribute to open-source AI tools and care about evaluation, observability, and making systems useful beyond the demo.",
     "Outside code, I watch films, listen to music, and follow long technical rabbit holes until they turn into projects.",
 ];
 
+// Present Aafi's current focus and interests in his own voice.
 export const About = () => {
     return (
         <SectionWrapper id="about" className="w-full py-10">

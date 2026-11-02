@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = "https://www.aafimalek.live";
+    const baseUrl = "https://aafi.vercel.app";
     const lastModified = new Date();
 
     return [

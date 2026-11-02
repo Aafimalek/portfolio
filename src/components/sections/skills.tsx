@@ -1,87 +1,66 @@
-"use client";
-
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { IconType } from "react-icons";
+import { SiDocker, SiFastapi, SiGit, SiGithubactions, SiJavascript, SiLangchain, SiMongodb, SiNeo4J, SiNextdotjs, SiPostgresql, SiPython, SiPytorch, SiReact, SiRedis, SiTypescript } from "react-icons/si";
 import { SectionWrapper } from "@/components/section-wrapper";
-import {
-    SiDocker,
-    SiFastapi,
-    SiFlask,
-    SiJavascript,
-    SiLangchain,
-    SiMongodb,
-    SiNextdotjs,
-    SiNodedotjs,
-    SiNumpy,
-    SiOpenai,
-    SiPandas,
-    SiPostgresql,
-    SiPython,
-    SiPytorch,
-    SiReact,
-    SiRedis,
-    SiScikitlearn,
-    SiStreamlit,
-    SiTensorflow,
-    SiTypescript,
-} from "react-icons/si";
 
+type TechItem = { name: string; icon: IconType | string; color: string };
 type TechStyle = CSSProperties & { "--tech-color": string };
 
-type TechItem = {
-    name: string;
-    icon: IconType;
-    color: string;
-    group: string;
-};
-
-const techStack: TechItem[] = [
-    { name: "Python", icon: SiPython, color: "#3776AB", group: "Language" },
-    { name: "PyTorch", icon: SiPytorch, color: "#EE4C2C", group: "ML" },
-    { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00", group: "ML" },
-    { name: "React", icon: SiReact, color: "#61DAFB", group: "Frontend" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF", group: "Frontend" },
-    { name: "TypeScript", icon: SiTypescript, color: "#3178C6", group: "Language" },
-    { name: "FastAPI", icon: SiFastapi, color: "#009688", group: "API" },
-    { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1", group: "Database" },
-    { name: "MongoDB", icon: SiMongodb, color: "#47A248", group: "Database" },
-    { name: "OpenAI", icon: SiOpenai, color: "#10A37F", group: "AI" },
-    { name: "LangChain", icon: SiLangchain, color: "#12A594", group: "AI" },
-    { name: "Docker", icon: SiDocker, color: "#2496ED", group: "Infra" },
-    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E", group: "Language" },
-    { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E", group: "Runtime" },
-    { name: "Redis", icon: SiRedis, color: "#FF4438", group: "Cache" },
-    { name: "Flask", icon: SiFlask, color: "#FFFFFF", group: "API" },
-    { name: "Scikit-learn", icon: SiScikitlearn, color: "#F7931E", group: "ML" },
-    { name: "Pandas", icon: SiPandas, color: "#E70488", group: "Data" },
-    { name: "NumPy", icon: SiNumpy, color: "#4DABCF", group: "Data" },
-    { name: "Streamlit", icon: SiStreamlit, color: "#FF4B4B", group: "App" },
+// Use the installed brand icons; Simple Icons supplies the two newer marks not in this version.
+const techGroups: { name: string; items: TechItem[] }[] = [
+    { name: "AI / ML", items: [
+        { name: "PyTorch", icon: SiPytorch, color: "#ee4c2c" },
+        { name: "LangGraph", icon: "https://cdn.simpleicons.org/langgraph/27a78a", color: "#27a78a" },
+        { name: "LangChain", icon: SiLangchain, color: "#21a789" },
+        { name: "MCP", icon: "https://cdn.simpleicons.org/modelcontextprotocol/718da8", color: "#718da8" },
+    ] },
+    { name: "Languages", items: [
+        { name: "Python", icon: SiPython, color: "#3776ab" },
+        { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
+        { name: "JavaScript", icon: SiJavascript, color: "#d5ad00" },
+    ] },
+    { name: "Product", items: [
+        { name: "FastAPI", icon: SiFastapi, color: "#009688" },
+        { name: "React", icon: SiReact, color: "#23a4c2" },
+        { name: "Next.js", icon: SiNextdotjs, color: "#8699a8" },
+    ] },
+    { name: "Data / infra", items: [
+        { name: "PostgreSQL", icon: SiPostgresql, color: "#4169e1" },
+        { name: "Neo4j", icon: SiNeo4J, color: "#458be8" },
+        { name: "MongoDB", icon: SiMongodb, color: "#47a248" },
+        { name: "Redis", icon: SiRedis, color: "#ff4438" },
+        { name: "Docker", icon: SiDocker, color: "#2496ed" },
+        { name: "Git", icon: SiGit, color: "#f05032" },
+        { name: "GitHub Actions", icon: SiGithubactions, color: "#2088ff" },
+    ] },
 ];
 
-export const Skills = () => {
+// Group Aafi's technologies by use and pair each with its real brand mark.
+export function Skills() {
     return (
         <SectionWrapper id="skills" className="w-full py-10">
-            <h2>Tech Stack</h2>
-
-            <div className="tech-showcase">
-                <div className="tech-card-grid" aria-label="Featured technology logos">
-                    {techStack.map((tech) => {
-                        const Icon = tech.icon;
-
-                        return (
-                            <div
-                                key={tech.name}
-                                className="tech-card"
-                                style={{ "--tech-color": tech.color } as TechStyle}
-                                title={tech.name}
-                            >
-                                <Icon className="h-8 w-8" />
-                                <span>{tech.name}</span>
-                            </div>
-                        );
-                    })}
-                </div>
+            <h2>Tech stack</h2>
+            <p className="section-intro">The tools I use to build AI systems, APIs and products.</p>
+            <div className="tech-groups">
+                {techGroups.map((group) => (
+                    <div className="tech-group" key={group.name}>
+                        <h3>{group.name}</h3>
+                        <div className="tech-group-items">
+                            {group.items.map((tech) => {
+                                const style: TechStyle = { "--tech-color": tech.color };
+                                const Icon = tech.icon;
+                                return (
+                                    <div className="tech-pill" key={tech.name} style={style}>
+                                        {typeof Icon === "string" ? <Image src={Icon} alt="" width={22} height={22} unoptimized /> : <Icon aria-hidden="true" />}
+                                        <span>{tech.name}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                ))}
             </div>
         </SectionWrapper>
     );
-};
+}

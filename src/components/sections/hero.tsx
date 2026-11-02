@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { RoleRotator } from "@/components/ui/role-rotator";
 
 const socialLinks = [
     { label: "GitHub", href: "https://github.com/Aafimalek", icon: Github },
@@ -13,10 +12,39 @@ const socialLinks = [
     { label: "Email", href: "mailto:aafimalek2023@gmail.com", icon: Mail },
 ];
 
+// Introduce Aafi and provide direct links to his public profiles and email.
 export const Hero = () => {
+    const reduceMotion = useReducedMotion();
+    const [ripple, setRipple] = useState<{ x: number; y: number; id: number } | null>(null);
+
+    // Start the decorative ripple at the actual press location in the hero.
+    const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+        if (reduceMotion || (event.pointerType === "mouse" && event.button !== 0)) return;
+        const bounds = event.currentTarget.getBoundingClientRect();
+        setRipple({ x: event.clientX - bounds.left, y: event.clientY - bounds.top, id: Date.now() });
+    };
+
     return (
         <section className="hero-linework relative w-full">
-            <div className="profile-grid">
+            <svg className="glass-filter" aria-hidden="true" focusable="false">
+                <filter id="hero-refraction" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="8" result="waves" />
+                    <feDisplacementMap in="SourceGraphic" in2="waves" scale="20" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+            </svg>
+            <div className="profile-grid" onPointerDown={handlePointerDown}>
+                {ripple && [0, 1, 2].map((wave) => (
+                    <motion.span
+                        key={`${ripple.id}-${wave}`}
+                        className="hero-ripple"
+                        aria-hidden="true"
+                        style={{ left: ripple.x, top: ripple.y }}
+                        initial={{ transform: "translate(-50%, -50%) scale(0.9)", opacity: 0 }}
+                        animate={{ transform: "translate(-50%, -50%) scale(5)", opacity: [0, 0.75, 0] }}
+                        transition={{ duration: 0.85, delay: wave * 0.13, ease: "easeOut" }}
+                        onAnimationComplete={wave === 2 ? () => setRipple((current) => current?.id === ripple.id ? null : current) : undefined}
+                    />
+                ))}
                 <div className="profile-cell flex items-center justify-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.92 }}
@@ -48,8 +76,9 @@ export const Hero = () => {
                         </motion.h1>
                     </div>
                     <div className="profile-subtitle-row flex flex-col gap-3 sm:flex-row sm:items-center">
-                        <RoleRotator />
+                        <span className="hero-role">AI &amp; ML Engineer</span>
                     </div>
+                    <span className="availability"><span aria-hidden="true" />Open to full-time opportunities</span>
                 </div>
             </div>
 

@@ -18,7 +18,7 @@ const projects = [
         tags: ["T3 Stack", "Next.js", "AI", "Full Stack"],
         videoUrl: "https://www.youtube.com/embed/qjMPYaxhqQw?autoplay=1&mute=1&controls=0&loop=1&playlist=qjMPYaxhqQw",
         liveUrl: "https://t3chat-indol.vercel.app/",
-        githubUrl: "https://github.com/Aafimalek",
+        githubUrl: "https://github.com/Aafimalek/t3_chat",
     },
     {
         title: "Advanced RAG",
@@ -113,7 +113,7 @@ const projects = [
     {
         title: "truevision ai",
         year: "2025",
-        description: "Detects deepfake videos and images with high accuracy.",
+        description: "Explores deepfake detection for videos and images.",
         tags: ["Security", "Deep Learning"],
         videoUrl: "https://www.youtube.com/embed/1lCQw4nHY6I?autoplay=1&mute=1&controls=0&loop=1&playlist=1lCQw4nHY6I",
         liveUrl: "https://image-verifier.streamlit.app/",

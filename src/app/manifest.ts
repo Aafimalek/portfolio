@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Aafi Malek - AI/ML Engineer Portfolio",
         short_name: "Aafi Malek",
         description:
-            "Aafi Malek (Aafikhan Malek) - AI/ML Engineering student at L.D. College Of Engineering, Ahmedabad. Full Stack Developer from Jamnagar building innovative solutions.",
+            "Aafi Malek is an AI/ML engineer building agents, retrieval systems, speech applications and open-source software.",
         start_url: "/",
         display: "standalone",
         background_color: "#000000",

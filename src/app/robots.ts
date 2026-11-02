@@ -17,7 +17,7 @@ export default function robots(): MetadataRoute.Robots {
                 allow: "/",
             },
         ],
-        sitemap: "https://www.aafimalek.live/sitemap.xml",
-        host: "https://www.aafimalek.live",
+        sitemap: "https://aafi.vercel.app/sitemap.xml",
+        host: "https://aafi.vercel.app",
     };
 }

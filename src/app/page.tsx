@@ -13,7 +13,9 @@ import { GridBackground } from "@/components/ui/grid-background";
 import { ThemeReanimator } from "@/components/theme-reanimator";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/site-footer";
+import { OpenSource } from "@/components/sections/open-source";
 
+// Assemble the portfolio in the order visitors encounter Aafi's current work.
 export default function Home() {
   return (
     <>
@@ -26,8 +28,9 @@ export default function Home() {
             <div className="portfolio-content min-w-0">
               <ThemeReanimator>
                 <Hero />
-                <About />
+                <OpenSource />
                 <Skills />
+                <About />
                 <Products />
                 <Projects />
                 <Blogs />

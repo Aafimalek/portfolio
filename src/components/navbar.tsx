@@ -9,6 +9,7 @@ const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
 const navItems = [
+    { title: "Open Source", href: "#open-source" },
     { title: "About", href: "#about" },
     { title: "Tech Stack", href: "#skills" },
     { title: "Products", href: "#products" },
@@ -17,13 +18,14 @@ const navItems = [
     { title: "Contact", href: "#contact" },
 ];
 
+// Render the persistent section navigation and the existing theme control.
 export const Navbar = () => {
     const { resolvedTheme, setTheme } = useTheme();
     const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
     const isDark = mounted && resolvedTheme === "dark";
 
     return (
-        <header className="fixed inset-x-0 top-0 z-[5000] border-b border-[var(--line-soft)] bg-[var(--page-bg)]/88 backdrop-blur-xl">
+        <header className="glass-header fixed inset-x-0 top-0 z-[5000]">
             <nav className="site-nav mx-auto h-14 w-full max-w-[64rem] border-x border-[var(--line-soft)]">
                 <a
                     href="#"
