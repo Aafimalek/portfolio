@@ -59,7 +59,7 @@ export const Hero = () => {
                             fill
                             priority
                             sizes="160px"
-                            className="rounded-full object-cover grayscale contrast-125 transition duration-500 hover:grayscale-0"
+                            className="rounded-full object-cover"
                         />
                     </motion.div>
                 </div>

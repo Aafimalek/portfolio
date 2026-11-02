@@ -28,10 +28,10 @@ export const Education = () => {
                 {education.map((edu, index) => (
                     <motion.div
                         key={index}
-                        whileHover={{ x: 10, backgroundColor: "rgba(0,0,0,0.02)" }}
+                        whileHover={{ x: 4 }}
                         whileTap={{ scale: 0.98 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="flex flex-col md:flex-row justify-between items-start md:items-center p-3 sm:p-4 rounded-lg border-b border-neutral-200 dark:border-neutral-800 last:border-0 hover:border-transparent dark:hover:bg-white/5 transition-colors active:bg-neutral-50 dark:active:bg-white/10"
+                        className="education-glass flex flex-col md:flex-row justify-between items-start md:items-center p-3 sm:p-4 transition-colors"
                     >
                         <div className="flex-1 min-w-0">
                             <h3 className="text-base sm:text-lg font-bold text-left">{edu.degree}</h3>

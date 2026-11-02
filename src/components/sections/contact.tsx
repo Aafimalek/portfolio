@@ -97,7 +97,7 @@ export const Contact = () => {
                                         name="name"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
-                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all text-base"
+                                        className="w-full p-3 outline-none transition-all text-base"
                                         placeholder="Your Name"
                                     />
                                 </div>
@@ -109,7 +109,7 @@ export const Contact = () => {
                                         type="email"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
-                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all text-base"
+                                        className="w-full p-3 outline-none transition-all text-base"
                                         placeholder="Your Email"
                                     />
                                 </div>
@@ -120,12 +120,12 @@ export const Contact = () => {
                                         name="message"
                                         required
                                         whileFocus={{ scale: 1.01, borderColor: "#a3a3a3" }}
-                                        className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-none outline-none transition-all min-h-[120px] sm:min-h-[150px] text-base resize-none"
+                                        className="w-full p-3 outline-none transition-all min-h-[120px] sm:min-h-[150px] text-base resize-none"
                                         placeholder="Your Message"
                                     />
                                 </div>
                                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                    <Button className="w-full py-3" type="submit">Continue to WhatsApp</Button>
+                                    <Button className="w-full rounded-lg bg-transparent py-3 text-inherit hover:bg-transparent" type="submit">Continue to WhatsApp</Button>
                                 </motion.div>
                             </form>
                         </div>

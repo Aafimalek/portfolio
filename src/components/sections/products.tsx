@@ -26,6 +26,7 @@ const products = [
     },
 ];
 
+/** Show a video thumbnail until the visitor chooses to play its YouTube demo. */
 const VideoCard = ({ videoId, title }: { videoId: string; title: string }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
@@ -55,10 +56,9 @@ const VideoCard = ({ videoId, title }: { videoId: string; title: string }) => {
                 src={thumbnailUrl}
                 alt={title}
                 fill
-                className="object-cover opacity-75 grayscale transition duration-500 group-hover:scale-105 group-hover:opacity-95 group-hover:grayscale-0"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 384px"
             />
-            <span className="absolute inset-0 bg-black/20" />
             <span className="absolute inset-0 flex items-center justify-center">
                 <span className="flex h-12 w-12 items-center justify-center border border-white/35 bg-black/55 text-white backdrop-blur-sm transition group-hover:bg-white group-hover:text-black">
                     <IconPlayerPlay className="h-6 w-6 fill-current" />

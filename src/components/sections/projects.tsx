@@ -160,6 +160,7 @@ const getYouTubeId = (url: string) => {
     return (match && match[2].length === 11) ? match[2] : null;
 };
 
+/** Show a YouTube thumbnail and load the associated video when it is selected. */
 const VideoCard = ({ videoUrl, title }: { videoUrl: string, title: string }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const videoId = getYouTubeId(videoUrl);
@@ -189,7 +190,7 @@ const VideoCard = ({ videoUrl, title }: { videoUrl: string, title: string }) => 
                     src={thumbnailUrl}
                     alt={title}
                     fill
-                    className="object-cover grayscale opacity-75 transition duration-500 group-hover:scale-105 group-hover:opacity-95 group-hover:grayscale-0"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
             )}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -201,6 +202,7 @@ const VideoCard = ({ videoUrl, title }: { videoUrl: string, title: string }) => 
     );
 };
 
+/** Show the initial projects and reveal the remainder when requested. */
 export const Projects = () => {
     const [showAll, setShowAll] = useState(false);
     const INITIAL_DISPLAY_COUNT = 4;
@@ -251,7 +253,7 @@ export const Projects = () => {
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-none text-xs font-medium hover:opacity-90 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-white dark:after:bg-black after:transition-transform after:duration-300 hover:after:scale-x-100"
+                                            className="product-visit flex items-center justify-center gap-2 px-4 py-2 text-xs font-medium transition-all w-full"
                                         >
                                             <IconArrowUpRight className="h-4 w-4" />
                                             Open
@@ -265,7 +267,7 @@ export const Projects = () => {
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-none text-xs font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all w-full relative overflow-hidden group after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-left after:scale-x-0 after:bg-black dark:after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100"
+                                            className="product-visit flex items-center justify-center gap-2 px-4 py-2 text-xs font-medium transition-all w-full"
                                         >
                                             <IconBrandGithub className="h-4 w-4" />
                                             Code
