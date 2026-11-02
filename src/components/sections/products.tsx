@@ -68,6 +68,7 @@ const VideoCard = ({ videoId, title }: { videoId: string; title: string }) => {
     );
 };
 
+/** Render a product's demo, details, and real external link in a glass panel. */
 const ProductCard = ({ product, index }: { product: typeof products[0]; index: number }) => {
     return (
         <motion.article
@@ -75,7 +76,7 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: index * 0.08 }}
             viewport={{ once: true, margin: "-50px" }}
-            className="module-card flex h-full flex-col"
+            className="module-card product-glass flex h-full flex-col"
         >
             <VideoCard videoId={product.youtubeId} title={product.name} />
 
@@ -106,7 +107,7 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
                     <Link
                         href={product.url}
                         target="_blank"
-                        className="inline-flex items-center gap-2 border border-neutral-950 bg-neutral-950 px-3 py-2 text-xs font-bold text-white transition hover:bg-neutral-800 dark:border-white dark:bg-white dark:text-black dark:hover:bg-neutral-200"
+                        className="product-visit inline-flex items-center gap-2 px-3 py-2 text-xs font-bold transition"
                     >
                         Visit
                         <IconArrowUpRight className="h-4 w-4" />
@@ -117,12 +118,13 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
     );
 };
 
+/** Present the existing products and their demos in a responsive grid. */
 export const Products = () => {
     return (
         <SectionWrapper id="products" className="w-full py-10">
             <h2>Products</h2>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="product-grid grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {products.map((product, index) => (
                     <ProductCard key={product.name} product={product} index={index} />
                 ))}
