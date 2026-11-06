@@ -77,10 +77,10 @@ export const metadata: Metadata = {
       "AI/ML engineer building agents, retrieval systems, speech applications and open-source software.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-banner.jpg",
         width: 1200,
         height: 630,
-        alt: "Aafi Malek - AI/ML Engineer Portfolio",
+        alt: "Aafi Malek, AI & ML Engineer, above a painted Japanese lake landscape",
       },
     ],
   },
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     title: "Aafi Malek | AI & ML Engineer | Full Stack Developer",
     description:
       "AI/ML engineer building agents, retrieval systems, speech applications and open-source software.",
-    images: ["/og-image.png"],
+    images: ["/og-banner.jpg"],
     creator: "@aafimalek2032",
   },
   category: "technology",
