@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { Highlight } from "@/components/ui/marks";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Phone, Twitter, Linkedin, Github } from "lucide-react";
 import { motion } from "framer-motion";
@@ -31,7 +32,7 @@ export const Contact = () => {
                                         visible: { opacity: 1, y: 0 }
                                     }}
                                 >
-                                    {word}
+                                    {word === "full-time" ? <Highlight>{word}</Highlight> : word}
                                 </motion.span>{" "}
                             </React.Fragment>
                         ))}

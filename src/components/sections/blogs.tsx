@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { Marked } from "@/components/ui/marks";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { IconArrowUpRight, IconClock, IconBrandMedium } from "@tabler/icons-react";
@@ -12,7 +13,7 @@ const blogs = [
     {
         title: "How I Built Manimancer",
         description:
-            "A technical deep dive into the product architecture, backend design, and AWS deployment path behind a prompt-to-animation system.",
+            "A ~technical deep dive~ into the product architecture, backend design, and AWS deployment path behind a prompt-to-animation system.",
         url: "https://medium.com/@aafimalek2023/how-i-built-manimancer-1858407e073e",
         readTime: "16 min read",
         tags: ["Product Architecture", "AWS", "Python", "AI"],
@@ -21,7 +22,7 @@ const blogs = [
     {
         title: "How I Built This T3.chat-Inspired AI Chat System",
         description:
-            "A technical deep dive into the architecture, data flow, context pipeline, and infrastructure decisions behind a full-stack AI chat application.",
+            "A technical deep dive into the architecture, data flow, ==context pipeline==, and infrastructure decisions behind a full-stack AI chat application.",
         url: "https://medium.com/@aafimalek2023/how-i-built-this-t3-chat-inspired-ai-chat-system-16d63384ac77",
         readTime: "15 min read",
         tags: ["Next.js", "FastAPI", "LangGraph", "MongoDB"],
@@ -68,7 +69,7 @@ export const Blogs = () => {
                                             </CardTitle>
                                         </div>
                                         <CardDescription className="mt-2 text-left text-sm leading-relaxed">
-                                            {blog.description}
+                                            <Marked text={blog.description} />
                                         </CardDescription>
                                     </CardHeader>
 

@@ -6,7 +6,7 @@ type Lens = { selector: string; bezel: number; shift: number; blur: number; disp
 
 // Bezel is the rim width, shift is how far the rim bends light, and blur frosts the centre, all in pixels.
 const LENSES: Lens[] = [
-    { selector: ".glass-header", bezel: 24, shift: 12, blur: 4, dispersion: true, bottomEdgeOnly: true },
+    { selector: ".glass-header", bezel: 24, shift: 12, blur: 6, dispersion: true, bottomEdgeOnly: true },
     { selector: ".hero-links-grid .box-link", bezel: 10, shift: 8, blur: 3, dispersion: true },
     { selector: ".hero-role, .availability", bezel: 8, shift: 7, blur: 2, dispersion: true },
     { selector: ".demo-play", bezel: 13, shift: 11, blur: 2, dispersion: true },
@@ -161,7 +161,9 @@ export function GlassEffects() {
         };
 
         const resize = new ResizeObserver(schedule);
-        const added = new MutationObserver(schedule);
+        const added = new MutationObserver((records) => {
+            if (records.some((record) => !(record.target as Element).closest?.(".text-flow, .lens-defs"))) schedule();
+        });
         added.observe(document.body, { childList: true, subtree: true });
         schedule();
 

@@ -5,13 +5,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { Marked } from "@/components/ui/marks";
 import { DemoVideo } from "@/components/ui/demo-video";
 
 const products = [
     {
         name: "Manimancer",
         tagline: "Create animations with AI",
-        description: "Prompt-to-animation product for creating 2D or 3D explanatory videos in a 3Blue1Brown-like style, powered by LLMs and Python.",
+        description: "==Prompt-to-animation== product for creating 2D or 3D explanatory videos in a 3Blue1Brown-like style, powered by LLMs and Python.",
         url: "https://manimancer.fun",
         tech: ["Next.js", "Python", "OpenAI", "Stripe"],
         youtubeId: "nDlpTDnmLvU",
@@ -19,7 +20,7 @@ const products = [
     {
         name: "AI-Notez",
         tagline: "Your AI-powered second brain",
-        description: "Note workspace with AI translation, summarization, tag suggestions, grammar checks, and structured organization.",
+        description: "Note workspace with ~AI translation~, summarization, tag suggestions, grammar checks, and structured organization.",
         url: "https://www.ai-notez.fun/",
         tech: ["React", "Supabase", "Vector DB", "Edge Functions"],
         youtubeId: "5zI4bhiwpqo",
@@ -51,7 +52,7 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
                     </div>
                 </div>
 
-                <p className="mb-4 flex-1 text-sm leading-6 text-neutral-600 dark:text-neutral-300">{product.description}</p>
+                <p className="mb-4 flex-1 text-sm leading-6 text-neutral-600 dark:text-neutral-300"><Marked text={product.description} /></p>
 
                 <div className="stack-grid mb-4">
                     {product.tech.map((tech) => (

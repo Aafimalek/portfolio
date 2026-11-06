@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { setFlame } from "@/lib/dragon-flame";
+import type { Body, TextFlow } from "@/lib/text-flow";
 
 const PIXEL = 1;
 const SEGMENTS = 21;
@@ -12,6 +14,9 @@ const SHADE = "#235f92";
 const LIGHT = "#8fd3ff";
 const GOLD = "#ffb454";
 const PEARL = "#f4f8fb";
+const FLAME = ["#fff4c2", "#ffd166", "#ffa62b", "#f3722c", "#b23a1e"];
+const FLAME_JET = 0.55;
+const FLAME_PUFF = 0.26;
 
 // The head seen from above, facing right. Only the top half is drawn here because it mirrors.
 const HEAD_HALF = [
@@ -26,7 +31,7 @@ const HEAD_ANCHOR = { column: 3, row: 4 };
 const HEAD_COLOURS: Record<string, string> = { "#": INK, g: GOLD, b: BODY, l: LIGHT, e: PEARL };
 
 type Point = { x: number; y: number };
-type Ember = Point & { speedX: number; speedY: number; life: number; colour: string };
+type Ember = Point & { speedX: number; speedY: number; life: number; span: number; size: number };
 
 function disc(context: CanvasRenderingContext2D, x: number, y: number, radius: number) {
     const centreX = Math.round(x);
@@ -129,20 +134,27 @@ function drawHead(context: CanvasRenderingContext2D, head: Point, angle: number,
     }
 }
 
-/** A small pixel dragon that snakes after the cursor and breathes sparks on a click, but leaves the hero to itself. */
+/** A small pixel dragon that swims under the page text, parting it as it goes, breathes fire and leaves the hero to itself. */
 export function PixelDragon() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const textLayerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas?.getContext("2d");
-        if (!canvas || !context || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const textLayer = textLayerRef.current;
+        if (!canvas || !context || !textLayer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
         let points: Point[] = [];
         let embers: Ember[] = [];
         let target = { x: 0, y: 0 };
         let cursor: Point | null = null;
         let leaving = false;
+        let flow: TextFlow | null = null;
+        let flowRequested = false;
+        let flameLeft = 0;
+        let nextPuff = 5;
+        let unmounted = false;
         let angle = Math.PI;
         let speed = 0;
         let idle = 0;
@@ -150,6 +162,31 @@ export function PixelDragon() {
         let lastTime = 0;
 
         const hero = document.querySelector(".hero-linework");
+
+        // The layout library only loads once the dragon first appears, so it costs nothing on page load.
+        const loadTextFlow = () => {
+            if (flowRequested) return;
+            flowRequested = true;
+            void import("@/lib/text-flow").then(({ createTextFlow }) => {
+                if (!unmounted) flow = createTextFlow(textLayer);
+            });
+        };
+
+        // The last body sits ahead of the head, so the text parts before the dragon reaches it.
+        const bodies = (): Body[] => {
+            const reach = Math.min(speed * 0.14, 40);
+            const ahead = { x: (points[0].x + Math.cos(angle) * reach) * PIXEL, y: (points[0].y + Math.sin(angle) * reach) * PIXEL, radius: 8 };
+            const spine = points
+                .filter((_, index) => index % 2 === 0)
+                .map((point, index) => ({ x: point.x * PIXEL, y: point.y * PIXEL, radius: index === 0 ? 7 : bodyRadius(index * 2) + 2 }));
+            if (flameLeft <= 0) return [...spine, ahead];
+            const flame = [26, 46, 68].map((distance, index) => ({
+                x: (points[0].x + Math.cos(angle) * distance) * PIXEL,
+                y: (points[0].y + Math.sin(angle) * distance) * PIXEL,
+                radius: 12 - index * 3,
+            }));
+            return [...spine, ahead, ...flame];
+        };
 
         // The whole band counts, so the dragon cannot sit in the side margins beside the hero.
         const cursorInHero = () => {
@@ -190,16 +227,53 @@ export function PixelDragon() {
             }
         };
 
+        // Feed the flame from the snout, in a narrow cone that widens as it leaves the mouth.
+        const feedFlame = (seconds: number) => {
+            flameLeft = Math.max(0, flameLeft - seconds);
+            nextPuff -= seconds;
+            if (nextPuff <= 0 && !leaving && idle < REST_AFTER - 2) {
+                flameLeft = Math.max(flameLeft, FLAME_PUFF);
+                nextPuff = 6 + Math.random() * 7;
+            }
+            if (flameLeft <= 0 || points.length === 0) {
+                setFlame(null);
+                return;
+            }
+            const head = points[0];
+            const isJet = flameLeft > FLAME_PUFF;
+            setFlame({ x: (head.x + Math.cos(angle) * 6) * PIXEL, y: (head.y + Math.sin(angle) * 6) * PIXEL, angle, reach: isJet ? 96 : 58 });
+            for (let count = Math.ceil(seconds * 170); count > 0; count--) {
+                const spread = angle + (Math.random() - 0.5) * 0.5;
+                const velocity = (isJet ? 240 : 120) + Math.random() * (isJet ? 170 : 120) + speed * 0.6;
+                const span = 0.2 + Math.random() * 0.28;
+                embers.push({
+                    x: head.x + Math.cos(angle) * 6,
+                    y: head.y + Math.sin(angle) * 6,
+                    speedX: Math.cos(spread) * velocity,
+                    speedY: Math.sin(spread) * velocity,
+                    life: span,
+                    span,
+                    size: 2 + Math.random() * 2,
+                });
+            }
+        };
+
+        // Each spark cools from cream through gold and orange to a dull ember, and rises a little as it goes.
         const drawEmbers = (seconds: number) => {
             embers = embers.filter((ember) => (ember.life -= seconds) > 0);
+            const drag = Math.pow(0.03, seconds);
             embers.forEach((ember) => {
+                const age = 1 - ember.life / ember.span;
+                ember.speedX *= drag;
+                ember.speedY = ember.speedY * drag - 70 * seconds;
                 ember.x += ember.speedX * seconds;
                 ember.y += ember.speedY * seconds;
-                ember.speedX *= 0.94;
-                ember.speedY *= 0.94;
-                context.fillStyle = ember.colour;
-                context.fillRect(Math.round(ember.x), Math.round(ember.y), ember.life > 0.22 ? 2 : 1, ember.life > 0.22 ? 2 : 1);
+                const size = Math.max(1, Math.round(ember.size * (1 - age * 0.7)));
+                context.globalAlpha = age > 0.7 ? (1 - age) / 0.3 : 1;
+                context.fillStyle = FLAME[Math.min(FLAME.length - 1, Math.floor(age * FLAME.length))];
+                context.fillRect(Math.round(ember.x), Math.round(ember.y), size, size);
             });
+            context.globalAlpha = 1;
         };
 
         const tick = (now: number) => {
@@ -212,15 +286,19 @@ export function PixelDragon() {
                 points = [];
                 embers = [];
                 leaving = false;
+                setFlame(null);
                 frame = 0;
                 context.clearRect(0, 0, canvas.width, canvas.height);
+                flow?.clear();
                 return;
             }
+            feedFlame(seconds);
+            flow?.update(bodies());
             context.clearRect(0, 0, canvas.width, canvas.height);
+            drawEmbers(seconds);
             drawBody(context, points, time);
             drawHead(context, points[0], angle, time);
-            drawEmbers(seconds);
-            frame = idle > REST_AFTER && embers.length === 0 ? 0 : requestAnimationFrame(tick);
+            frame = idle > REST_AFTER && embers.length === 0 && flameLeft <= 0 ? 0 : requestAnimationFrame(tick);
         };
 
         const wake = () => {
@@ -245,6 +323,7 @@ export function PixelDragon() {
             target = cursor;
             if (points.length === 0) {
                 points = Array.from({ length: SEGMENTS }, (_, index) => ({ x: canvas.width + 12 + index * SPACING, y: target.y }));
+                loadTextFlow();
             }
             wake();
         };
@@ -257,19 +336,7 @@ export function PixelDragon() {
         const breathe = (event: PointerEvent) => {
             aim(event);
             if (leaving || points.length === 0) return;
-            const head = points[0];
-            for (let count = 0; count < 12; count++) {
-                const spread = angle + (Math.random() - 0.5) * 0.9;
-                const velocity = 50 + Math.random() * 80;
-                embers.push({
-                    x: head.x + Math.cos(angle) * 6,
-                    y: head.y + Math.sin(angle) * 6,
-                    speedX: Math.cos(spread) * velocity,
-                    speedY: Math.sin(spread) * velocity,
-                    life: 0.35 + Math.random() * 0.4,
-                    colour: [GOLD, GOLD, LIGHT, PEARL][count % 4],
-                });
-            }
+            flameLeft = FLAME_JET;
         };
 
         fit();
@@ -278,6 +345,9 @@ export function PixelDragon() {
         window.addEventListener("pointerdown", breathe, { passive: true });
         window.addEventListener("scroll", retarget, { passive: true });
         return () => {
+            unmounted = true;
+            setFlame(null);
+            flow?.destroy();
             cancelAnimationFrame(frame);
             window.removeEventListener("resize", fit);
             window.removeEventListener("pointermove", aim);
@@ -286,5 +356,10 @@ export function PixelDragon() {
         };
     }, []);
 
-    return <canvas ref={canvasRef} className="pixel-dragon" aria-hidden="true" />;
+    return (
+        <>
+            <div ref={textLayerRef} className="text-flow" aria-hidden="true" />
+            <canvas ref={canvasRef} className="pixel-dragon" aria-hidden="true" />
+        </>
+    );
 }

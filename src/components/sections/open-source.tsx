@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { Marked } from "@/components/ui/marks";
 
 // Each link points to Aafi's actual pull request, whose status can change over time.
 const contributions = [
@@ -44,7 +45,7 @@ export function OpenSource() {
         <SectionWrapper id="open-source" className="w-full pb-10">
             <h2>Open source</h2>
             <div className="contribution-intro">
-                <p>I contribute to the AI tools and developer infrastructure I use.</p>
+                <p><Marked text="I contribute to the ~AI tools~ and developer infrastructure I use." /></p>
                 <a href="https://github.com/pulls?q=is%3Apr+author%3AAafimalek" target="_blank" rel="noopener noreferrer">
                     All pull requests <ArrowUpRight aria-hidden="true" size={16} />
                 </a>

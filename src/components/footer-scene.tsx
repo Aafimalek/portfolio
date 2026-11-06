@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
+import { createBurns, flameActive, inFlame } from "@/lib/dragon-flame";
 
 const IMAGE_WIDTH = 2172;
 const IMAGE_HEIGHT = 724;
@@ -9,6 +11,9 @@ const MOON_X = 0.42;
 const MOON_DARK = [52, 80, 116];
 const MOON_LIGHT = [190, 220, 250];
 const MOON_PEAK = "#abcef4";
+const SUN_DARK = [255, 206, 104];
+const SUN_LIGHT = [255, 238, 176];
+const SUN_GLINT = "#fff3c4";
 const MOON_CRATERS = [[-0.36, -0.42, 0.13], [0.32, -0.22, 0.09], [0.1, 0.46, 0.16], [-0.54, 0.2, 0.07], [0.56, 0.3, 0.06], [-0.1, 0.04, 0.05]];
 const STRIP = 2;
 const FRAME_MS = 1000 / 30;
@@ -27,6 +32,7 @@ type Star = { x: number; y: number; size: number; phase: number; speed: number }
 type Firefly = { x: number; y: number; phase: number; drift: number };
 type Petal = { x: number; y: number; speed: number; sway: number; spin: number; phase: number; size: number };
 type Bird = { offset: number; lag: number };
+type Cloud = { x: number; y: number; speed: number; image: HTMLCanvasElement };
 type Meteor = { x: number; y: number; age: number };
 
 // Run a loop only while its element is on screen.
@@ -51,6 +57,14 @@ function whileVisible(element: Element, onFrame: (seconds: number) => void) {
 }
 
 const prefersStillness = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// The scene follows the site theme, so light mode is a sunny day and dark mode is the night.
+function useIsDay() {
+    const { resolvedTheme } = useTheme();
+    return resolvedTheme === "light";
+}
+
+const discSize = (width: number) => Math.round(Math.max(64, Math.min(124, width * 0.066)));
 
 // Work out where a point of the painting lands, since it is cropped to cover its frame from the bottom.
 function coverMap(width: number, height: number) {
@@ -93,8 +107,8 @@ function moonTone(u: number, v: number, depth: number) {
     return tone;
 }
 
-// Draw the disc as engraved lines that follow the sphere, the same way the painting is shaded.
-function engraveMoon(context: CanvasRenderingContext2D, size: number, spacing: number) {
+// Draw the disc as engraved lines, the same way the painting is shaded: latitudes on the moon, rings on the sun.
+function engraveDisc(context: CanvasRenderingContext2D, size: number, spacing: number, isSun: boolean) {
     const image = context.createImageData(size, size);
     const radius = size / 2 - 1;
     const tilt = 0.38;
@@ -105,18 +119,20 @@ function engraveMoon(context: CanvasRenderingContext2D, size: number, spacing: n
             const reach = Math.hypot(u, v);
             if (reach > 1.02) continue;
             const depth = Math.sqrt(Math.max(0, 1 - reach * reach));
-            const tone = Math.min(1, Math.max(0.24, moonTone(u, v, depth) + 0.18));
+            const tone = isSun ? 0.62 + depth * 0.34 + (noise(u * 3, v * 3) - 0.5) * 0.2 : Math.min(1, Math.max(0.24, moonTone(u, v, depth) + 0.18));
             const latitude = Math.asin(Math.min(1, Math.max(-1, v * Math.cos(tilt) + u * Math.sin(tilt))));
             const wobble = (noise(u * 6, v * 6) - 0.5) * 0.5;
-            const line = latitude * (radius / spacing) + wobble;
+            const line = (isSun ? reach * 0.7 : latitude) * (radius / spacing) + wobble;
             const fromLine = Math.abs(line - Math.floor(line) - 0.5) * 2;
             let ink = 1 - smoothstep(tone - 0.2, tone + 0.2, fromLine);
             if (hash(x, y) > 0.965 - tone * 0.05) ink = Math.max(ink, 0.8);
             const rim = smoothstep(0.93, 0.985, reach) * Math.max(0.3, 0.5 - 0.5 * u - 0.6 * v);
             ink = Math.min(1, ink + rim);
             const pixel = (y * size + x) * 4;
-            MOON_DARK.forEach((dark, channel) => {
-                image.data[pixel + channel] = dark + (MOON_LIGHT[channel] - dark) * ink;
+            const shadow = isSun ? SUN_DARK : MOON_DARK;
+            const light = isSun ? SUN_LIGHT : MOON_LIGHT;
+            shadow.forEach((dark, channel) => {
+                image.data[pixel + channel] = dark + (light[channel] - dark) * ink;
             });
             image.data[pixel + 3] = 255 * (1 - smoothstep(0.985, 1.015, reach));
         }
@@ -124,9 +140,43 @@ function engraveMoon(context: CanvasRenderingContext2D, size: number, spacing: n
     context.putImageData(image, 0, 0);
 }
 
-/** Hang an engraved moon in the sky, drawn once in the colours sampled from the painting. */
+// Paint a soft cumulus once as a single shape, then shade its underside so the puffs read as one cloud.
+function paintCloud(width: number) {
+    const canvas = document.createElement("canvas");
+    const height = Math.round(width * 0.5);
+    canvas.width = Math.round(width);
+    canvas.height = height;
+    const context = canvas.getContext("2d");
+    if (!context) return canvas;
+
+    const puffs = 7;
+    context.filter = "blur(3px)";
+    context.fillStyle = "#ffffff";
+    context.beginPath();
+    for (let index = 0; index < puffs; index++) {
+        const along = (index + 0.5) / puffs;
+        const radius = height * (0.13 + 0.2 * Math.sin(along * Math.PI) * (0.8 + Math.random() * 0.35));
+        const x = width * (0.1 + along * 0.8);
+        const y = height * 0.62 - radius * 0.35;
+        context.moveTo(x + radius, y);
+        context.arc(x, y, radius, 0, Math.PI * 2);
+    }
+    context.fill();
+    context.filter = "none";
+
+    context.globalCompositeOperation = "source-atop";
+    const shade = context.createLinearGradient(0, height * 0.34, 0, height * 0.78);
+    shade.addColorStop(0, "rgba(176, 216, 243, 0)");
+    shade.addColorStop(1, "rgba(176, 216, 243, .72)");
+    context.fillStyle = shade;
+    context.fillRect(0, 0, width, height);
+    return canvas;
+}
+
+/** Hang an engraved moon in the night sky, or the sun by day, drawn once in colours sampled from the painting. */
 export function FooterMoon() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const isDay = useIsDay();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -140,7 +190,7 @@ export function FooterMoon() {
         let drawnSize = 0;
 
         const fit = () => {
-            const size = Math.round(Math.max(64, Math.min(124, footer.clientWidth * 0.066)));
+            const size = discSize(footer.clientWidth);
             const footerBounds = footer.getBoundingClientRect();
             const artBounds = art.getBoundingClientRect();
             canvas.style.width = `${size}px`;
@@ -151,14 +201,14 @@ export function FooterMoon() {
             drawnSize = size;
             canvas.width = size * ratio;
             canvas.height = size * ratio;
-            engraveMoon(context, size * ratio, 2.2 * ratio);
+            engraveDisc(context, size * ratio, 2.2 * ratio, isDay);
         };
 
         fit();
         const resize = new ResizeObserver(fit);
         resize.observe(footer);
         return () => resize.disconnect();
-    }, []);
+    }, [isDay]);
 
     return <canvas ref={canvasRef} className="footer-moon" aria-hidden="true" />;
 }
@@ -166,12 +216,13 @@ export function FooterMoon() {
 /** Bend the lake in thin strips, then add spreading rings and the moon's broken reflection. */
 export function FooterWater() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const isDay = useIsDay();
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas?.getContext("2d");
         const art = canvas?.parentElement;
-        const image = art?.querySelector("img");
+        const image = art?.querySelector<HTMLImageElement>(isDay ? ".footer-day" : ".footer-night");
         if (!canvas || !context || !art || !image || prefersStillness()) return;
 
         // A srcset image reports a density-adjusted size, but canvas reads its real pixels, so sample a plain copy.
@@ -214,7 +265,7 @@ export function FooterWater() {
                 [0, 0.22].forEach((delay) => {
                     const growth = ring.age - delay;
                     if (growth <= 0) return;
-                    context.strokeStyle = `rgba(214, 236, 255, ${0.5 * (1 - ring.age)})`;
+                    context.strokeStyle = `rgba(${isDay ? "255, 255, 255" : "214, 236, 255"}, ${(isDay ? 0.7 : 0.5) * (1 - ring.age)})`;
                     context.beginPath();
                     context.ellipse(ring.x, ring.y, growth * ring.size * 2, growth * ring.size * 0.55, 0, 0, Math.PI * 2);
                     context.stroke();
@@ -225,12 +276,12 @@ export function FooterWater() {
 
         const drawMoonlight = (time: number) => {
             const centre = canvas.width * MOON_X;
-            context.fillStyle = MOON_PEAK;
+            context.fillStyle = isDay ? SUN_GLINT : MOON_PEAK;
             for (let y = 3; y < waterHeight; y += 5) {
                 const depth = y / waterHeight;
                 const reach = 12 + depth * 46;
                 const flicker = Math.sin(y * 1.7 + time * 3.1) * 0.5 + 0.5;
-                context.globalAlpha = (0.08 + flicker * 0.22) * (1 - depth * 0.45);
+                context.globalAlpha = (isDay ? 0.2 + flicker * 0.5 : 0.08 + flicker * 0.22) * (1 - depth * 0.45);
                 context.fillRect(centre + Math.sin(y * 0.5 + time * 1.4) * reach * 0.5 - reach * flicker * 0.5, y, reach * flicker + 3, 1.5);
             }
             context.globalAlpha = 1;
@@ -266,14 +317,15 @@ export function FooterWater() {
             resize.disconnect();
             image.removeEventListener("load", copySource);
         };
-    }, []);
+    }, [isDay]);
 
     return <canvas ref={canvasRef} className="footer-water" aria-hidden="true" />;
 }
 
-/** Fill the night with stars, meteors, fireflies, lit windows, falling petals and passing birds. */
+/** Fill the night with stars, meteors, fireflies and lit windows, or the day with sun rays and clouds. Petals and birds pass through both, and birds burn if the dragon catches them. */
 export function FooterSky() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const isDay = useIsDay();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -282,6 +334,8 @@ export function FooterSky() {
         const art = footer?.querySelector(".footer-art");
         if (!canvas || !context || !footer || !art) return;
 
+        const burns = createBurns(3);
+        let clouds: Cloud[] = [];
         let stars: Star[] = [];
         let fireflies: Firefly[] = [];
         let petals: Petal[] = [];
@@ -330,6 +384,12 @@ export function FooterSky() {
                 drift: 0.25 + Math.random() * 0.6,
             }));
             petals = Array.from({ length: canvas.width < 640 ? 9 : 20 }, () => newPetal(true));
+            clouds = !isDay ? [] : Array.from({ length: canvas.width < 640 ? 3 : 6 }, (_, index) => ({
+                x: (index / 6) * canvas.width * 1.2 + Math.random() * 90,
+                y: index % 2 ? 18 + Math.random() * 40 : skyBottom * (0.62 + Math.random() * 0.2),
+                speed: 5 + Math.random() * 9,
+                image: paintCloud(120 + Math.random() * 170),
+            }));
         };
 
         const glow = (x: number, y: number, radius: number, colour: string, strength: number) => {
@@ -338,6 +398,24 @@ export function FooterSky() {
             gradient.addColorStop(1, `rgba(${colour}, 0)`);
             context.fillStyle = gradient;
             context.fillRect(x - radius, y - radius, radius * 2, radius * 2);
+        };
+
+        const drawSunRays = (time: number) => {
+            const size = discSize(canvas.width);
+            const x = canvas.width * MOON_X;
+            const y = artTop + artHeight * 0.13;
+            glow(x, y, size * 2.3, "255, 214, 130", 0.34);
+            context.fillStyle = "rgba(255, 190, 84, .62)";
+            for (let index = 0; index < 16; index++) {
+                const angle = time * 0.07 + (index / 16) * Math.PI * 2;
+                const inner = size * 0.6;
+                const outer = size * (index % 2 ? 0.8 : 0.96);
+                context.beginPath();
+                context.moveTo(x + Math.cos(angle - 0.055) * inner, y + Math.sin(angle - 0.055) * inner);
+                context.lineTo(x + Math.cos(angle) * outer, y + Math.sin(angle) * outer);
+                context.lineTo(x + Math.cos(angle + 0.055) * inner, y + Math.sin(angle + 0.055) * inner);
+                context.fill();
+            }
         };
 
         const drawBird = (x: number, y: number, up: boolean) => {
@@ -354,15 +432,26 @@ export function FooterSky() {
             lastTime = time;
             context.clearRect(0, 0, canvas.width, canvas.height);
 
-            context.fillStyle = "#cfe8ff";
-            stars.forEach((star) => {
-                context.globalAlpha = 0.42 + 0.42 * Math.sin(time * star.speed + star.phase);
-                context.fillRect(Math.round(star.x), Math.round(star.y), star.size, star.size);
-            });
-            context.globalAlpha = 1;
+            if (isDay) {
+                drawSunRays(time);
+                clouds.forEach((cloud) => {
+                    cloud.x += cloud.speed * seconds;
+                    if (cloud.x > canvas.width + 20) cloud.x = -cloud.image.width;
+                    context.globalAlpha = 0.86;
+                    context.drawImage(cloud.image, Math.round(cloud.x), Math.round(cloud.y));
+                    context.globalAlpha = 1;
+                });
+            } else {
+                context.fillStyle = "#cfe8ff";
+                stars.forEach((star) => {
+                    context.globalAlpha = 0.42 + 0.42 * Math.sin(time * star.speed + star.phase);
+                    context.fillRect(Math.round(star.x), Math.round(star.y), star.size, star.size);
+                });
+                context.globalAlpha = 1;
+            }
 
             nextMeteor -= seconds;
-            if (!meteor && nextMeteor <= 0) {
+            if (!isDay && !meteor && nextMeteor <= 0) {
                 meteor = { x: canvas.width * (0.3 + Math.random() * 0.6), y: skyBottom * Math.random() * 0.45, age: 0 };
                 nextMeteor = 6 + Math.random() * 9;
             }
@@ -382,14 +471,14 @@ export function FooterSky() {
                 if (meteor.age >= 1) meteor = null;
             }
 
-            LIGHTS.forEach((light, index) => {
+            if (!isDay) LIGHTS.forEach((light, index) => {
                 const flicker = 0.62 + Math.sin(time * 5.3 + index * 2) * 0.12 + Math.sin(time * 11.7 + index) * 0.08;
                 const x = map.left + light.x * IMAGE_WIDTH * map.scale;
                 const y = artTop + map.top + light.y * IMAGE_HEIGHT * map.scale;
                 glow(x, y, light.size * Math.max(map.scale * 1.6, 0.8), "255, 196, 112", flicker * 0.62);
             });
 
-            fireflies.forEach((fly) => {
+            if (!isDay) fireflies.forEach((fly) => {
                 const shine = Math.max(0, Math.sin(time * 1.5 + fly.phase));
                 const x = fly.x + Math.sin(time * fly.drift + fly.phase) * 34;
                 const y = fly.y + Math.cos(time * fly.drift * 1.4 + fly.phase) * 18;
@@ -402,7 +491,7 @@ export function FooterSky() {
                 petal.y += petal.speed * seconds;
                 petal.x += (24 + Math.sin(time * 0.6 + petal.phase) * petal.sway) * seconds;
                 const turn = Math.sin(time * petal.spin + petal.phase);
-                context.fillStyle = index % 3 === 0 ? "rgba(255, 214, 228, .85)" : "rgba(226, 240, 255, .78)";
+                context.fillStyle = index % 3 === 0 ? "rgba(255, 196, 214, .9)" : isDay ? "rgba(255, 255, 255, .92)" : "rgba(226, 240, 255, .78)";
                 context.beginPath();
                 context.ellipse(petal.x, petal.y, petal.size, petal.size * (0.28 + Math.abs(turn) * 0.5), time * petal.spin + petal.phase, 0, Math.PI * 2);
                 context.fill();
@@ -410,7 +499,7 @@ export function FooterSky() {
             });
 
             context.globalAlpha = 0.9;
-            context.fillStyle = "#cfe8ff";
+            context.fillStyle = isDay ? "#27455f" : "#cfe8ff";
             nextFlock -= seconds;
             if (flock.length === 0 && nextFlock <= 0) {
                 flockX = -60;
@@ -419,13 +508,24 @@ export function FooterSky() {
             }
             if (flock.length > 0) {
                 flockX += seconds * 92;
+                if (flameActive()) {
+                    const bounds = footer.getBoundingClientRect();
+                    flock = flock.filter((bird) => {
+                        const x = flockX - bird.lag;
+                        const y = flockY + bird.offset;
+                        if (!inFlame(x + bounds.left, y + bounds.top)) return true;
+                        burns.ignite(x, y, 92, 0);
+                        return false;
+                    });
+                }
                 flock.forEach((bird, index) => drawBird(Math.round(flockX - bird.lag), Math.round(flockY + bird.offset), Math.sin(time * 8 + index) > 0));
-                if (flockX - 120 > canvas.width) {
+                if (flock.length === 0 || flockX - 120 > canvas.width) {
                     flock = [];
                     nextFlock = 5 + Math.random() * 8;
                 }
             }
             context.globalAlpha = 1;
+            burns.step(context, seconds);
         };
 
         fit();
@@ -441,7 +541,7 @@ export function FooterSky() {
             stop();
             resize.disconnect();
         };
-    }, []);
+    }, [isDay]);
 
     return <canvas ref={canvasRef} className="footer-sky" aria-hidden="true" />;
 }

@@ -106,7 +106,7 @@ export default function RootLayout({
         className={`${sora.variable} ${jetbrainsMono.variable} ${GeistPixelSquare.variable} font-sans antialiased`}
       >
         <noscript>
-          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}[data-mark]::before,[data-mark]::after{clip-path:none!important;--sweep:400deg!important}[data-mark="highlight"]{color:#2a1a02;-webkit-text-fill-color:#2a1a02}`}</style>
         </noscript>
         <ThemeProvider
           attribute="class"

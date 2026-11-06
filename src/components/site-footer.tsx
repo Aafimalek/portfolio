@@ -19,7 +19,8 @@ export function SiteFooter() {
             <div className="footer-inner">
                 <div className="footer-brand">
                     <p className="footer-wordmark">Aafi Malek<span aria-hidden="true">.</span></p>
-                    <p>AI / ML engineer<br />Building with open source.</p>
+                    <p>AI / ML engineer</p>
+                    <p>Building with open source.</p>
                     <a className="footer-contact" href="mailto:aafimalek2023@gmail.com">Get in touch <ArrowUpRight aria-hidden="true" size={17} /></a>
                 </div>
                 <div className="footer-columns">
@@ -37,7 +38,8 @@ export function SiteFooter() {
                 </div>
             </div>
             <div className="footer-art" aria-hidden="true">
-                <Image src="/footer-landscape.png" alt="" fill sizes="100vw" quality={85} />
+                <Image className="footer-night" src="/footer-landscape.png" alt="" fill sizes="100vw" quality={85} />
+                <Image className="footer-day" src="/footer-landscape-day.webp" alt="" fill sizes="100vw" quality={85} />
                 <FooterWater />
                 <span className="footer-mist" />
             </div>

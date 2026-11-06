@@ -26,7 +26,7 @@ export const Navbar = () => {
     const isDark = mounted && resolvedTheme === "dark";
     const [hovered, setHovered] = useState<string | null>(null);
     const [active, setActive] = useState<string | null>(null);
-    const [tone, setTone] = useState<"sky" | "night" | undefined>();
+    const [tone, setTone] = useState<"sky" | "night" | undefined>("sky");
     const { scrollYProgress } = useScroll();
     const progress = useSpring(scrollYProgress, { stiffness: 180, damping: 32, mass: 0.3 });
     const highlighted = hovered ?? active;
@@ -44,7 +44,8 @@ export const Navbar = () => {
             setActive(current?.href ?? null);
             const heroBottom = document.querySelector(".hero-linework")?.getBoundingClientRect().bottom ?? 0;
             const footerTop = document.getElementById("site-footer")?.getBoundingClientRect().top ?? Infinity;
-            setTone(heroBottom > 28 ? "sky" : footerTop < 28 ? "night" : undefined);
+            const overFooter = footerTop < 28;
+            setTone(heroBottom > 28 || (overFooter && !isDark) ? "sky" : overFooter ? "night" : undefined);
         };
         const onScroll = () => {
             if (!frame) frame = requestAnimationFrame(update);
@@ -55,7 +56,7 @@ export const Navbar = () => {
             cancelAnimationFrame(frame);
             window.removeEventListener("scroll", onScroll);
         };
-    }, []);
+    }, [isDark]);
 
     return (
         <header className="glass-header fixed inset-x-0 top-0 z-[5000]" data-tone={tone}>

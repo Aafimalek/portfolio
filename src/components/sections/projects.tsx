@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { Marked } from "@/components/ui/marks";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { DemoVideo } from "@/components/ui/demo-video";
@@ -13,7 +14,7 @@ const projects = [
     {
         title: "T3 Chat",
         year: "2025",
-        description: "A real-time AI chat application built with the T3 stack.",
+        description: "A ~real-time~ AI chat application built with the T3 stack.",
         tags: ["T3 Stack", "Next.js", "AI", "Full Stack"],
         videoUrl: "https://www.youtube.com/embed/qjMPYaxhqQw?autoplay=1&mute=1&controls=0&loop=1&playlist=qjMPYaxhqQw",
         liveUrl: "https://t3chat-indol.vercel.app/",
@@ -40,7 +41,7 @@ const projects = [
     {
         title: "GraphDB",
         year: "2025",
-        description: "Ask questions about your graph database.",
+        description: "Ask questions about your ==graph database==.",
         tags: ["Graph Database", "NoSQL", "Database"],
         videoUrl: "https://www.youtube.com/embed/PV9uq7_rR8M?autoplay=1&mute=1&controls=0&loop=1&playlist=PV9uq7_rR8M",
         liveUrl: "https://github.com/Aafimalek/graphdb",
@@ -188,7 +189,7 @@ export const Projects = () => {
                                     </Link>
                                     <span className="stack-chip">{project.year}</span>
                                 </div>
-                                <CardDescription className="mt-2 text-left text-sm">{project.description}</CardDescription>
+                                <CardDescription className="mt-2 text-left text-sm"><Marked text={project.description} /></CardDescription>
                             </CardHeader>
                             <CardContent className="p-0 mt-auto">
                                 <div className="flex flex-wrap gap-2 mt-2 justify-start mb-4">

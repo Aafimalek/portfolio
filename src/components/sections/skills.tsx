@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import type { IconType } from "react-icons";
 import { SiDocker, SiFastapi, SiGit, SiGithubactions, SiJavascript, SiLangchain, SiMongodb, SiNeo4J, SiNextdotjs, SiPostgresql, SiPython, SiPytorch, SiReact, SiRedis, SiTypescript } from "react-icons/si";
 import { SectionWrapper } from "@/components/section-wrapper";
+import { Marked } from "@/components/ui/marks";
 
 type TechItem = { name: string; icon: IconType | string; color: string };
 type TechStyle = CSSProperties & { "--tech-color": string };
@@ -41,7 +42,7 @@ export function Skills() {
     return (
         <SectionWrapper id="skills" className="w-full pb-10">
             <h2>Tech stack</h2>
-            <p className="section-intro">The tools I use to build AI systems, APIs and products.</p>
+            <p className="section-intro"><Marked text="The tools I use to build ~AI systems~, APIs and products." /></p>
             <div className="tech-groups">
                 {techGroups.map((group) => (
                     <div className="tech-group" key={group.name}>
