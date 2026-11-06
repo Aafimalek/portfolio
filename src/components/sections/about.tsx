@@ -5,16 +5,18 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/section-wrapper";
 
 const aboutPoints = [
-    "AI & ML engineer and L.D. College of Engineering graduate, building practical AI applications and full-stack products.",
-    "My work includes LLM agents, retrieval systems, speech recognition, voice applications, and the APIs and interfaces around them.",
-    "I contribute to open-source AI tools and care about evaluation, observability, and making systems useful beyond the demo.",
-    "Outside code, I watch films, listen to music, and follow long technical rabbit holes until they turn into projects.",
+    "AI/ML Engineer at DatumQuest since July 2026, after joining as an intern in January. I build Python LLM applications, multi-agent workflows, enterprise RAG and GraphRAG, and real-time voice AI.",
+    "I own the FastAPI backends for four applied AI initiatives, covering agent automation, voice operations, enterprise knowledge retrieval and multimodal content.",
+    "My agents run on LangGraph, Google ADK and MCP, with memory, permission scopes and human approval. That work improved task completion by 22% on a 120-scenario internal evaluation.",
+    "I designed hybrid GraphRAG with Neo4j and Pinecone/Qdrant, adding evidence citations and grounded-answer checks that cut unsupported responses by 30% in test scenarios.",
+    "I care about evaluation and observability. Langfuse traces, golden datasets and repeatable regression tests shortened release validation by 35%.",
+    "I also contribute to open-source AI tools. Outside code, I watch films, listen to music, and follow long technical rabbit holes until they turn into projects.",
 ];
 
 // Present Aafi's current focus and interests in his own voice.
 export const About = () => {
     return (
-        <SectionWrapper id="about" className="w-full py-10">
+        <SectionWrapper id="about" className="w-full pb-10">
             <h2>About</h2>
             <motion.ul
                 initial="hidden"

@@ -9,9 +9,9 @@ import { GlowCard } from "@/components/ui/glow-card";
 // Offer direct contact links and prepare a visitor's message in WhatsApp.
 export const Contact = () => {
     return (
-        <SectionWrapper id="contact" className="py-10 w-full mb-20">
-            <h2 className="text-2xl font-bold text-left mb-4">Get in Touch</h2>
-            <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
+        <SectionWrapper id="contact" className="pb-10 w-full">
+            <h2>Get in Touch</h2>
+            <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="space-y-6">
                     <motion.div
                         initial="hidden"
@@ -20,18 +20,20 @@ export const Contact = () => {
                         variants={{
                             visible: { transition: { staggerChildren: 0.02 } }
                         }}
-                        className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-base sm:text-lg flex flex-wrap gap-1"
+                        className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-left text-base sm:text-lg"
                     >
                         {"I'm open to full-time AI engineering opportunities. If you're building an AI product or looking for an engineer, I'd love to hear from you.".split(" ").map((word, index) => (
-                            <motion.span
-                                key={index}
-                                variants={{
-                                    hidden: { opacity: 0, y: 10 },
-                                    visible: { opacity: 1, y: 0 }
-                                }}
-                            >
-                                {word}
-                            </motion.span>
+                            <React.Fragment key={index}>
+                                <motion.span
+                                    className="inline-block"
+                                    variants={{
+                                        hidden: { opacity: 0, y: 10 },
+                                        visible: { opacity: 1, y: 0 }
+                                    }}
+                                >
+                                    {word}
+                                </motion.span>{" "}
+                            </React.Fragment>
                         ))}
                     </motion.div>
 
@@ -42,7 +44,7 @@ export const Contact = () => {
                         variants={{
                             visible: { transition: { staggerChildren: 0.1 } }
                         }}
-                        className="space-y-3 sm:space-y-4 mt-8"
+                        className="mt-6 space-y-1"
                     >
                         {[
                             { href: "mailto:aafimalek2023@gmail.com", icon: Mail, text: "aafimalek2023@gmail.com" },
@@ -61,9 +63,9 @@ export const Contact = () => {
                                 href={item.href}
                                 target={item.href.startsWith("http") ? "_blank" : undefined}
                                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                whileHover={{ x: 10, scale: 1.02, backgroundColor: "rgba(0,0,0,0.05)" }}
+                                whileHover={{ x: 4 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group p-2 sm:p-3 rounded-none active:bg-neutral-100 dark:active:bg-neutral-800"
+                                className="flex items-center gap-4 text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors group py-2"
                             >
                                 <item.icon className="w-5 h-5 flex-shrink-0" />
                                 <span className="text-sm sm:text-base truncate">{item.text}</span>
@@ -125,7 +127,7 @@ export const Contact = () => {
                                     />
                                 </div>
                                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                    <Button className="w-full rounded-lg bg-transparent py-3 text-inherit hover:bg-transparent" type="submit">Continue to WhatsApp</Button>
+                                    <Button className="w-full rounded-[.5rem] bg-transparent py-3 text-inherit hover:bg-transparent" type="submit">Continue to WhatsApp</Button>
                                 </motion.div>
                             </form>
                         </div>

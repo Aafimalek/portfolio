@@ -6,9 +6,9 @@ export const SectionWrapper = ({ children, className, id }: { children: React.Re
     return (
         <motion.section
             id={id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
             viewport={{ once: true }}
             className={cn("linework-section scroll-mt-16", className)}
         >

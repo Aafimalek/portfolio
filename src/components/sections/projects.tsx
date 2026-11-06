@@ -3,11 +3,10 @@ import React from "react";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { DemoVideo } from "@/components/ui/demo-video";
 
-import { IconArrowUpRight, IconBrandGithub, IconPlayerPlay } from "@tabler/icons-react";
+import { IconArrowUpRight, IconBrandGithub } from "@tabler/icons-react";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
 const projects = [
@@ -150,56 +149,10 @@ const projects = [
 
 import { motion } from "framer-motion";
 
-// ... (imports remain the same)
-
-// ... (projects array remains the same)
-
 const getYouTubeId = (url: string) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
-};
-
-/** Show a YouTube thumbnail and load the associated video when it is selected. */
-const VideoCard = ({ videoUrl, title }: { videoUrl: string, title: string }) => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const videoId = getYouTubeId(videoUrl);
-    const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "";
-
-    if (isPlaying) {
-        return (
-            <div className="relative w-full aspect-video">
-                <iframe
-                    src={videoUrl}
-                    title={title}
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                />
-            </div>
-        );
-    }
-
-    return (
-        <div
-            className="relative w-full aspect-video cursor-pointer group overflow-hidden bg-neutral-100 dark:bg-neutral-900"
-            onClick={() => setIsPlaying(true)}
-        >
-            {thumbnailUrl && (
-                <Image
-                    src={thumbnailUrl}
-                    alt={title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-            )}
-            <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex h-12 w-12 items-center justify-center border border-white/35 bg-black/55 text-white backdrop-blur-sm transition group-hover:bg-white group-hover:text-black">
-                    <IconPlayerPlay className="w-6 h-6 fill-current" />
-                </div>
-            </div>
-        </div>
-    );
 };
 
 /** Show the initial projects and reveal the remainder when requested. */
@@ -211,9 +164,9 @@ export const Projects = () => {
     const hasMoreProjects = projects.length > INITIAL_DISPLAY_COUNT;
 
     return (
-        <SectionWrapper id="projects" className="py-10 w-full">
+        <SectionWrapper id="projects" className="pb-10 w-full">
             <h2>Projects</h2>
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
                 {displayedProjects.map((project, index) => (
                     <motion.div
                         key={index}
@@ -222,9 +175,10 @@ export const Projects = () => {
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
                     >
-                            <GlowCard className="h-full flex flex-col p-4">
-                                <VideoCard videoUrl={project.videoUrl} title={project.title} />
-                            <CardHeader className="p-0 mt-4">
+                        <GlowCard className="h-full flex flex-col">
+                            <DemoVideo youtubeId={getYouTubeId(project.videoUrl) ?? ""} title={project.title} />
+                            <div className="flex flex-1 flex-col p-4">
+                            <CardHeader className="p-0">
                                 <div className="flex justify-between items-start">
                                     <Link href={project.liveUrl} target="_blank" className="hover:underline decoration-neutral-500 underline-offset-4">
                                         <CardTitle className="text-base font-bold text-left flex items-center gap-2">
@@ -232,14 +186,14 @@ export const Projects = () => {
                                             <IconArrowUpRight className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
                                         </CardTitle>
                                     </Link>
-                                    <Badge variant="secondary" className="text-[10px]">{project.year}</Badge>
+                                    <span className="stack-chip">{project.year}</span>
                                 </div>
                                 <CardDescription className="mt-2 text-left text-sm">{project.description}</CardDescription>
                             </CardHeader>
                             <CardContent className="p-0 mt-auto">
                                 <div className="flex flex-wrap gap-2 mt-2 justify-start mb-4">
                                     {project.tags.map((tag) => (
-                                        <span key={tag} className="text-[10px] px-2 py-1 border border-[var(--line-soft)] bg-[var(--module-hover)] rounded-none text-neutral-600 dark:text-neutral-300 lowercase">
+                                        <span key={tag} className="stack-chip lowercase">
                                             {tag}
                                         </span>
                                     ))}
@@ -253,7 +207,7 @@ export const Projects = () => {
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="product-visit flex items-center justify-center gap-2 px-4 py-2 text-xs font-medium transition-all w-full"
+                                            className="product-visit flex items-center justify-center gap-2 px-4 py-2 text-xs font-bold transition-all w-full"
                                         >
                                             <IconArrowUpRight className="h-4 w-4" />
                                             Open
@@ -267,7 +221,7 @@ export const Projects = () => {
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="product-visit flex items-center justify-center gap-2 px-4 py-2 text-xs font-medium transition-all w-full"
+                                            className="product-visit flex items-center justify-center gap-2 px-4 py-2 text-xs font-bold transition-all w-full"
                                         >
                                             <IconBrandGithub className="h-4 w-4" />
                                             Code
@@ -275,6 +229,7 @@ export const Projects = () => {
                                     </Link>
                                 </div>
                             </CardContent>
+                            </div>
                         </GlowCard>
                     </motion.div>
                 ))}
@@ -289,9 +244,9 @@ export const Projects = () => {
                 >
                     <motion.button
                         onClick={() => setShowAll(!showAll)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-8 py-3 border-2 border-neutral-300 dark:border-neutral-700 bg-transparent text-neutral-800 dark:text-neutral-200 rounded-none text-sm font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all relative overflow-hidden group"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="product-visit px-8 py-3 text-xs font-bold transition-all relative overflow-hidden group"
                     >
                         <span className="relative z-10">
                             {showAll ? "show less" : `see more (${projects.length - INITIAL_DISPLAY_COUNT} more)`}

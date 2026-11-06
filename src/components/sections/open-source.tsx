@@ -41,7 +41,7 @@ const contributions = [
 // Show a featured contribution and compact links to other upstream pull requests.
 export function OpenSource() {
     return (
-        <SectionWrapper id="open-source" className="w-full py-10">
+        <SectionWrapper id="open-source" className="w-full pb-10">
             <h2>Open source</h2>
             <div className="contribution-intro">
                 <p>I contribute to the AI tools and developer infrastructure I use.</p>

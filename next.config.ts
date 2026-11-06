@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
   images: {
+    qualities: [75, 85],
     remotePatterns: [
       {
         protocol: "https",
@@ -13,12 +14,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cdn.simpleicons.org",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "img.youtube.com",
-        port: "",
         pathname: "/**",
       },
     ],

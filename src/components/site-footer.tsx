@@ -1,5 +1,6 @@
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import Image from "next/image";
+import { FooterMoon, FooterSky, FooterWater } from "@/components/footer-scene";
 
 const footerLinks = [
     { label: "GitHub", href: "https://github.com/Aafimalek", icon: Github },
@@ -13,6 +14,8 @@ export function SiteFooter() {
     return (
         <footer id="site-footer" className="site-footer portfolio-footer">
             <div className="footer-hatch" aria-hidden="true" />
+            <FooterSky />
+            <FooterMoon />
             <div className="footer-inner">
                 <div className="footer-brand">
                     <p className="footer-wordmark">Aafi Malek<span aria-hidden="true">.</span></p>
@@ -35,6 +38,8 @@ export function SiteFooter() {
             </div>
             <div className="footer-art" aria-hidden="true">
                 <Image src="/footer-landscape.png" alt="" fill sizes="100vw" quality={85} />
+                <FooterWater />
+                <span className="footer-mist" />
             </div>
             <div className="footer-bottom">
                 <span>Built by Aafi Malek</span>

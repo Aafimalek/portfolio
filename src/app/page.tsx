@@ -14,6 +14,8 @@ import { ThemeReanimator } from "@/components/theme-reanimator";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/site-footer";
 import { OpenSource } from "@/components/sections/open-source";
+import { GlassEffects } from "@/components/glass-effects";
+import { PixelDragon } from "@/components/pixel-dragon";
 
 // Assemble the portfolio in the order visitors encounter Aafi's current work.
 export default function Home() {
@@ -21,7 +23,7 @@ export default function Home() {
     <>
       <JsonLd />
       <GridBackground>
-        <main className="relative flex min-h-screen flex-col items-center pt-14">
+        <main className="relative flex min-h-screen flex-col items-center">
           <Navbar />
           <div className="portfolio-shell relative z-10 mx-auto w-full max-w-[64rem]">
             <div className="portfolio-side-rail hidden lg:block" aria-hidden="true" />
@@ -42,6 +44,8 @@ export default function Home() {
             <div className="portfolio-side-rail hidden lg:block" aria-hidden="true" />
           </div>
           <SiteFooter />
+          <GlassEffects />
+          <PixelDragon />
         </main>
       </GridBackground>
     </>

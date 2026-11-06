@@ -31,9 +31,9 @@ const blogs = [
 
 export const Blogs = () => {
     return (
-        <SectionWrapper id="blogs" className="py-10 w-full">
-            <h2 className="text-2xl font-bold text-left mb-6">Blogs</h2>
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <SectionWrapper id="blogs" className="pb-10 w-full">
+            <h2>Blogs</h2>
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
                 {blogs.map((blog, index) => (
                     <motion.div
                         key={blog.title}
@@ -52,7 +52,7 @@ export const Blogs = () => {
                                         className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                                     />
                                     <div className="absolute top-3 right-3">
-                                        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium">
+                                        <div className="flex items-center gap-1.5 rounded-[.5rem] px-2.5 py-1 bg-black/60 text-white text-[11px] font-medium">
                                             <IconBrandMedium className="h-3.5 w-3.5" />
                                             Medium
                                         </div>
@@ -75,10 +75,7 @@ export const Blogs = () => {
                                     <CardContent className="p-0 mt-auto pt-4">
                                         <div className="flex flex-wrap gap-2 mb-3">
                                             {blog.tags.map((tag) => (
-                                                <span
-                                                    key={tag}
-                                                    className="text-[10px] px-2 py-1 bg-neutral-100 dark:bg-neutral-900 rounded-none text-neutral-600 dark:text-neutral-300 lowercase"
-                                                >
+                                                <span key={tag} className="stack-chip lowercase">
                                                     {tag}
                                                 </span>
                                             ))}

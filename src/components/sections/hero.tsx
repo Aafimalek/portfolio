@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { PondFish } from "@/components/ui/pond-fish";
+import { WaterSurface } from "@/components/ui/water-surface";
 
 const socialLinks = [
     { label: "GitHub", href: "https://github.com/Aafimalek", icon: Github },
@@ -14,37 +16,19 @@ const socialLinks = [
 
 // Introduce Aafi and provide direct links to his public profiles and email.
 export const Hero = () => {
-    const reduceMotion = useReducedMotion();
-    const [ripple, setRipple] = useState<{ x: number; y: number; id: number } | null>(null);
-
-    // Start the decorative ripple at the actual press location in the hero.
-    const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-        if (reduceMotion || (event.pointerType === "mouse" && event.button !== 0)) return;
-        const bounds = event.currentTarget.getBoundingClientRect();
-        setRipple({ x: event.clientX - bounds.left, y: event.clientY - bounds.top, id: Date.now() });
-    };
+    const heroRef = useRef<HTMLElement>(null);
 
     return (
-        <section className="hero-linework relative w-full">
+        <section ref={heroRef} className="hero-linework relative w-full">
             <svg className="glass-filter" aria-hidden="true" focusable="false">
                 <filter id="hero-refraction" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
                     <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="8" result="waves" />
                     <feDisplacementMap in="SourceGraphic" in2="waves" scale="20" xChannelSelector="R" yChannelSelector="G" />
                 </filter>
             </svg>
-            <div className="profile-grid" onPointerDown={handlePointerDown}>
-                {ripple && [0, 1, 2].map((wave) => (
-                    <motion.span
-                        key={`${ripple.id}-${wave}`}
-                        className="hero-ripple"
-                        aria-hidden="true"
-                        style={{ left: ripple.x, top: ripple.y }}
-                        initial={{ transform: "translate(-50%, -50%) scale(0.9)", opacity: 0 }}
-                        animate={{ transform: "translate(-50%, -50%) scale(5)", opacity: [0, 0.75, 0] }}
-                        transition={{ duration: 0.85, delay: wave * 0.13, ease: "easeOut" }}
-                        onAnimationComplete={wave === 2 ? () => setRipple((current) => current?.id === ripple.id ? null : current) : undefined}
-                    />
-                ))}
+            <PondFish hostRef={heroRef} />
+            <WaterSurface hostRef={heroRef} />
+            <div className="profile-grid">
                 <div className="profile-cell flex items-center justify-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.92 }}
@@ -58,7 +42,7 @@ export const Hero = () => {
                             alt="Aafi Malek"
                             fill
                             priority
-                            sizes="160px"
+                            sizes="(max-width: 640px) 176px, 224px"
                             className="rounded-full object-cover"
                         />
                     </motion.div>
@@ -100,7 +84,7 @@ export const Hero = () => {
                                 <Icon className="h-4 w-4" />
                             </span>
                             <span className="min-w-0 flex-1 truncate text-sm font-semibold">{link.label}</span>
-                            <ArrowUpRight className="h-4 w-4 shrink-0 text-neutral-500" />
+                            <ArrowUpRight className="h-4 w-4 shrink-0 text-[#1f4a64]" />
                         </a>
                     );
                 })}

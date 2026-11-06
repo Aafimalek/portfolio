@@ -22,15 +22,12 @@ import { motion } from "framer-motion";
 // Display the education history, including the confirmed graduation status.
 export const Education = () => {
     return (
-        <SectionWrapper id="education" className="py-10 w-full">
-            <h2 className="text-2xl font-bold text-left mb-6">Education</h2>
-            <div className="w-full flex flex-col gap-4 sm:gap-8">
+        <SectionWrapper id="education" className="pb-10 w-full">
+            <h2>Education</h2>
+            <div className="w-full flex flex-col gap-4">
                 {education.map((edu, index) => (
                     <motion.div
                         key={index}
-                        whileHover={{ x: 4 }}
-                        whileTap={{ scale: 0.98 }}
-                        transition={{ type: "spring", stiffness: 300 }}
                         className="education-glass flex flex-col md:flex-row justify-between items-start md:items-center p-3 sm:p-4 transition-colors"
                     >
                         <div className="flex-1 min-w-0">

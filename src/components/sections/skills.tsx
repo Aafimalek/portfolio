@@ -39,7 +39,7 @@ const techGroups: { name: string; items: TechItem[] }[] = [
 // Group Aafi's technologies by use and pair each with its real brand mark.
 export function Skills() {
     return (
-        <SectionWrapper id="skills" className="w-full py-10">
+        <SectionWrapper id="skills" className="w-full pb-10">
             <h2>Tech stack</h2>
             <p className="section-intro">The tools I use to build AI systems, APIs and products.</p>
             <div className="tech-groups">

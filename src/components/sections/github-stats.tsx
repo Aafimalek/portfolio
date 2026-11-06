@@ -10,11 +10,9 @@ import { motion } from "framer-motion";
 export const GithubStats = () => {
     const { resolvedTheme } = useTheme();
     return (
-        <SectionWrapper id="github-stats" className="flex w-full flex-col items-center justify-center py-10">
+        <SectionWrapper id="github-stats" className="flex w-full flex-col items-center justify-center pb-10">
             <h2>GitHub Contributions</h2>
             <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 260, damping: 24 }}
                 className="module-card w-full overflow-x-auto p-4"
             >
                 <div className="min-w-[700px] sm:min-w-0 flex justify-center">

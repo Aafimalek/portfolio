@@ -1,32 +1,26 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { MotionConfig, motion, useAnimationControls } from "framer-motion";
 import { useTheme } from "next-themes";
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef } from "react";
 
-const subscribe = () => () => undefined;
-const getClientSnapshot = () => true;
-const getServerSnapshot = () => false;
-
+// Fade the page on a theme change without remounting it, so state and videos carry on.
 export const ThemeReanimator = ({ children }: { children: React.ReactNode }) => {
-    const { theme } = useTheme();
-    const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+    const { resolvedTheme } = useTheme();
+    const controls = useAnimationControls();
+    const previousTheme = useRef(resolvedTheme);
 
-    if (!mounted) {
-        return <>{children}</>;
-    }
+    useEffect(() => {
+        const changed = previousTheme.current && previousTheme.current !== resolvedTheme;
+        previousTheme.current = resolvedTheme;
+        if (!changed) return;
+        controls.set({ opacity: 0 });
+        void controls.start({ opacity: 1, transition: { duration: 0.2 } });
+    }, [controls, resolvedTheme]);
 
     return (
-        <AnimatePresence mode="wait">
-            <motion.div
-                key={theme}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-            >
-                {children}
-            </motion.div>
-        </AnimatePresence>
+        <MotionConfig reducedMotion="user">
+            <motion.div animate={controls}>{children}</motion.div>
+        </MotionConfig>
     );
 };
